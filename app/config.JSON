@@ -1,0 +1,6 @@
+{
+    "protocal": "http",
+    "host": "www.doubletom.com",
+    "port": "80",
+    "path": "/license"
+}

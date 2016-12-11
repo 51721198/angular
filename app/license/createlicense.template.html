@@ -1,0 +1,56 @@
+<div class="container" style="padding-top: 50px">
+    <div class="col-sm-8">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">设置</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-span">选择医院</span>
+                    <div class="col-sm-8">
+                        <select name="repeatSelect" id="repeatSelect" ng-model="$ctrl.license.hosNumber" style="height: 30px;width: 335px" required>
+                            <option ng-repeat="option in $ctrl.hospitals" value="{{option.hospitalNumber}}">{{option .hospitalName}}</option>
+                        </select>
+                        <span ng-show="!$ctrl.license.hosNumber" style="color: red">*请选择医院!</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-span">选择到期日期</span>
+                    <div class="col-sm-6">
+                        <p class="input-group">
+                            <input type="text" class="form-control" ng-model="$ctrl.license.date" uib-datepicker-popup="yyyy-MM-dd" is-open="$ctrl.status.startopened" datepicker-options="$ctrl.dateOptions" ng-required="true" style="height: 30px;" readonly data-ng-click="$ctrl.open1()" />
+                            <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="$ctrl.open1()" style="height: 30px"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                        <!-- <span ng-show="!$ctrl.license.hosNumber" style="color: red">*请选择医院!</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title"></h3>
+                <button type="button" class="btn btn-danger " ng-click="$ctrl.createCode()"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> 生成</button>
+            </div>
+            <div class="panel-body">
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-span">源序列号</span>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" id="selectHos" readonly placeholder="{{$ctrl.license.sourceCode}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <span class="col-sm-3 col-form-span">加密序列号</span>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" rows="5" id="selectHos" readonly placeholder="{{$ctrl.license.encryptcode}}" ng-required="true"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group pull-left">
+            <button type="button " class="btn btn-default " ng-click="$ctrl.reloadRoute()">重置</button>
+            <button type="button " class="btn btn-info " ng-click="$ctrl.saveCode()" click-and-disable>提交</button>
+        </div>
+    </div>
+</div>

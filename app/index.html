@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" ng-app="licenseApp">
+
+<head>
+    <meta charset="utf-8">
+    <title>license</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/css/angular-datatables.css">
+    <link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-responsive-dt/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="bower_components/datatables.net-buttons-dt/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+    <!--    bower js file ,在app目录下使用bower install安装,不要在根目录        -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.min.js"></script>
+    <script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.min.js"></script>
+    <script src="bower_components/file-saver/FileSaver.js"></script>
+    <script src="bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <!-- <script src="//cdn.bootcss.com/angular-ui-bootstrap/2.2.0/ui-bootstrap.js"></script> -->
+    <!-- <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js"></script> -->
+    <!--  behind are my own derectives !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  -->
+    <script src="app.module.js"></script>
+    <script src="app.config.js"></script>
+    <script src="service/service.module.js"></script>
+    <script src="service/checkmark/checkmark.filter.js"></script>
+    <script src="service/user/user.service.js"></script>
+    <script src="user-list/user-list.component.js"></script>
+    <script src="user-detail/user-detail.component.js"></script>
+    <script src="license/license.component.js"></script>
+    <script src="login/login.component.js"></script>
+    <script src="navbar/nav.component.js"></script>
+    <script src="service/Auth.service.js"></script>
+    <script src="service/urlconfig.service.js"></script>
+    <script src="hospital/hospital.component.js"></script>
+    <script src="license/createlicense.component.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+    <nav></nav>
+    <div ng-view class="view-frame" style="height: 800px">
+    </div>
+    <div class="container" style="text-align: right">
+        <br>
+        <span>vico liudun</span>
+    </div>
+</body>
+
+</html>
