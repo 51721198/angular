@@ -1,2 +1,2 @@
 # angular
-my angular project
+http://www.kevinsnake.com/
