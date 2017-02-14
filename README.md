@@ -8,3 +8,4 @@ http://www.kevinsnake.com/
 5. 前端X-token,后端AOP实现用户权限验证
 6. Spring声明式事务
 7. 序列号生成基于RSA非对称加密算法
+8. 后端代码见JavaRoad/license
