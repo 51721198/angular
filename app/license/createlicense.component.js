@@ -90,6 +90,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                 self.saveCode = function() {
                     var defer3 = $q.defer();
                     console.log(self.license);
+                    console.log(urlconfig.getUrl(''));
                     $http({
                         method: "POST",
                         url: urlconfig.getUrl(''),
