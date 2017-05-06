@@ -77,7 +77,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                         defer2.resolve(data);
                         defer2.promise.then(function(data) {
                             license.sourceCode = data.resultobject.sourceCode;
-                            license.rsaKey = data.resultobject.rsaKey;
+                            license.keyId = data.resultobject.rsaKey;
                             license.encryptcode = data.resultobject.encryptcode;
                         })
                     })
