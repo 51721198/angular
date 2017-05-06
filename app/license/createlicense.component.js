@@ -99,14 +99,12 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     console.log(urlconfig.getUrl(''));
                     console.log('发送内容:' + JSON.stringify(self.license))
                     $http({
-                        Content-Type:"application/x-www-form-urlencoded",
                         method: "POST",
                         url: urlconfig.getUrl('/licenseController/savecode'),
                         data: self.license
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
-
                             console.log(data);
                         })
                     })
