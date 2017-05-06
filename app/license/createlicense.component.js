@@ -97,6 +97,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     console.log(self.license);
                     console.log('保存地址:'+urlconfig.getUrl('/licenseController/savecode'));
                     console.log(urlconfig.getUrl(''));
+                    console.log('发送内容:' + self.license)
                     $http({
                         method: "POST",
                         url: urlconfig.getUrl('/licenseController/savecode'),
