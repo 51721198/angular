@@ -94,11 +94,12 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     console.log(urlconfig.getUrl(''));
                     $http({
                         method: "POST",
-                        url: urlconfig.getUrl('savecode'),
+                        url: urlconfig.getUrl('/licenseController/savecode'),
                         data: JSON.stringify(self.license),
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
+                            
                             console.log(data);
                         })
                     })
