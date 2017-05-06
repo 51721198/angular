@@ -103,10 +103,12 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                         url: urlconfig.getUrl('/licenseController/savecode'),
                         data: self.license
                     }).success(function(data, status, headers, config) {
+
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
-
+                            alert(data.resultdesc);
                             console.log(data);
+                            $location.path('/license');
                         })
                     })
                 }
