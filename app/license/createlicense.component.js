@@ -68,6 +68,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     var year = license.date.getFullYear();
                     var month = license.date.getMonth() + 1;
                     var duedate = year + '-' + month + '-' + day;
+                    self.duedate = duedate;
                     console.log(duedate);
                     $http({
                         method: "GET",
@@ -89,6 +90,9 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
 
                 self.saveCode = function() {
                     license.sourceNumber = license.sourceCode;
+                    license.encryptedNumber = license.encryptcode
+                    license.hospitalNumber = license.hosNumber
+                    license.expiredDate = self.duedate
                     var defer3 = $q.defer();
                     console.log(self.license);
                     console.log('保存地址:'+urlconfig.getUrl('/licenseController/savecode'));
