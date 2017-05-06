@@ -105,6 +105,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
+
                             console.log(data);
                         })
                     })
