@@ -90,9 +90,10 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                 self.saveCode = function() {
                     var defer3 = $q.defer();
                     console.log(self.license);
+                    console.log('保存地址:'+urlconfig.getUrl('savecode'));
                     $http({
                         method: "POST",
-                        url: urlconfig.getUrl(''),
+                        url: urlconfig.getUrl('savecode'),
                         data: JSON.stringify(self.license),
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
