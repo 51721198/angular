@@ -88,6 +88,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                 }
 
                 self.saveCode = function() {
+                    license.sourceNumber = license.sourceCode;
                     var defer3 = $q.defer();
                     console.log(self.license);
                     console.log('保存地址:'+urlconfig.getUrl('/licenseController/savecode'));
@@ -99,7 +100,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
-                            
+
                             console.log(data);
                         })
                     })
