@@ -101,7 +101,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     $http({
                         method: "POST",
                         url: urlconfig.getUrl('/licenseController/savecode'),
-                        data: JSON.stringify(self.license),
+                        data: self.license
                     }).success(function(data, status, headers, config) {
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
