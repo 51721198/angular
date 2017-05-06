@@ -91,6 +91,7 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     var defer3 = $q.defer();
                     console.log(self.license);
                     console.log('保存地址:'+urlconfig.getUrl('savecode'));
+                    console.log(urlconfig.getUrl(''));
                     $http({
                         method: "POST",
                         url: urlconfig.getUrl('savecode'),
