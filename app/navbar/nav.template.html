@@ -7,12 +7,12 @@
             <li role="presentation" ng-class="{'active':selectedTab === 'license'}" ng-click="selectedTab = 'license'"><a href="#!/license">license</a></li>
             <li role="presentation" ng-class="{'active':selectedTab === 'createlicense'}" ng-click="selectedTab = 'createlicense'"><a href="#!/createlicense">createlicense</a></li>
             <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#!/users/xxx" role="button" aria-haspopup="true" aria-expanded="false"> Dropdown <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#!/users/xxx" role="button" aria-haspopup="true" aria-expanded="false" ng-class="{'active':selectedTab === 'dropdown-toggle'}" ng-click="selectedTab = 'ropdown-toggle'"> Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li role="presentation" ng-click="selectedTab = 'Profile'"><a href="#!/users/xxx">Profile</a></li>
-                    <li role="presentation" ng-click="selectedTab = 'Messages'"><a href="#!/users/xxx">Messages</a></li>
+                    <li role="presentation" ng-click="selectedTab = 'dropdown'"><a href="#!/users/xxx">Profile</a></li>
+                    <li role="presentation" ng-click="selectedTab = 'dropdown'"><a href="#!/users/xxx">Messages</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#!/users/xxx" ng-click="selectedTab = 'Separated'">Separated link</a></li>
+                    <li><a href="#!/users/xxx" ng-click="selectedTab = 'dropdown'">Separated link</a></li>
                 </ul>
             </li>
             <form class="navbar-form navbar-left">
