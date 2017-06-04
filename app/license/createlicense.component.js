@@ -6,8 +6,8 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
         templateUrl: 'license/createlicense.template.html',
         //三个DT derective的引入次序必须在$q之前而且有先后顺序,否则会报错
         //数组前几个元素为provider                                                           //再次声明,上下两行的对应关系一定要严格执行,先后次序也不能错
-        controller: ['$q', '$scope', '$compile', '$http', '$sce', 'urlconfig', '$route','$location',
-            function licenseController($q, $scope, $compile, $http, $sce, urlconfig, $route,$location) {
+        controller: ['$q', '$scope', '$compile', '$http', '$sce', 'urlconfig', '$route','$location','$cookies',
+            function licenseController($q, $scope, $compile, $http, $sce, urlconfig, $route,$location,$cookies) {
 
                 var self = this;
                 var defer = $q.defer();
@@ -100,6 +100,11 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     console.log('发送内容:' + JSON.stringify(self.license))
                     $http({
                         method: "POST",
+                        headers:{
+                            "X-Token": $cookies.get('X-Token'),
+                            "Content-Type": "application/json"
+                            // "Content-Type":"application/x-www-form-urlencoded"
+                        },
                         url: urlconfig.getUrl('/licenseController/savecode'),
                         data: self.license
                     }).success(function(data, status, headers, config) {
