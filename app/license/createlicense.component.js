@@ -6,8 +6,8 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
         templateUrl: 'license/createlicense.template.html',
         //三个DT derective的引入次序必须在$q之前而且有先后顺序,否则会报错
         //数组前几个元素为provider                                                           //再次声明,上下两行的对应关系一定要严格执行,先后次序也不能错
-        controller: ['$q', '$scope', '$compile', '$http', '$sce', 'urlconfig', '$route','$location','$cookies',
-            function licenseController($q, $scope, $compile, $http, $sce, urlconfig, $route,$location,$cookies) {
+        controller: ['$q', '$scope', '$compile', '$http', '$sce', 'urlconfig', '$route','$location','$cookies','$httpParamSerializer','$httpParamSerializerJQLike',
+            function licenseController($q, $scope, $compile, $http, $sce, urlconfig, $route,$location,$cookies,$httpParamSerializer,$httpParamSerializerJQLike) {
 
                 var self = this;
                 var defer = $q.defer();
@@ -97,23 +97,24 @@ module('createlicense', ['service', 'service.user', 'ui.bootstrap', 'ui.bootstra
                     console.log(self.license);
                     console.log('保存地址:'+urlconfig.getUrl('/licenseController/savecode'));
                     console.log(urlconfig.getUrl(''));
-                    console.log('发送内容:' + JSON.stringify(self.license))
+                    console.log('发送内容:' + $httpParamSerializer(JSON.stringify(self.license)))
                     $http({
                         method: "POST",
                         headers:{
                             "X-Token": $cookies.get('X-Token'),
-                            "Content-Type": "application/json"
-                            // "Content-Type":"application/x-www-form-urlencoded"
+                            // "Content-Type": "application/json"
+                            "Content-Type":"application/x-www-form-urlencoded"
                         },
                         url: urlconfig.getUrl('/licenseController/savecode'),
-                        data: self.license
+                        //如果使用application/x-www-form-urlencoded的方式,则必须把json对象格式化成urlencode对象
+                        //注意,如果此处使用x-www-form-urlencoded,后端就不能用@ResponseBody绑参数,不然后端会报错
+                        data: $httpParamSerializer(self.license)
                     }).success(function(data, status, headers, config) {
-
                         defer3.resolve(data);
                         defer3.promise.then(function(data) {
                             alert(data.resultdesc);
                             console.log(data);
-                            $location.path('/license');
+                            if (data.resultcode == 1)  $location.path('/license');
                         })
                     })
                 }
