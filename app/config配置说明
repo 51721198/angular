@@ -1,1 +1,1 @@
-config中的host必须为后台license应用的ip地址,不能够填写localhost,同时,license后台应用的web.xml也必须填写这个angular应用所在服务器的ip地址,加进CORS的过滤列表当中,否则跨域请求会失败
+config中的host必须为后端license应用的非本地ip地址,不能够填写localhost(或者127.0.0.1),同时,license后台应用的web.xml CROS过滤器也必须填写这个angular应用所在服务器的非本地ip地址,加进CORS的过滤列表当中,否则跨域请求无法成功
