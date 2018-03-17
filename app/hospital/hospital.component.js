@@ -41,7 +41,7 @@ module('hospital', ['service', 'service.user', 'datatables', 'datatables.bootstr
                 self.dtOptions = DTOptionsBuilder.newOptions()
                     .withOption('ajax', {
                         // url: 'http://172.16.25.17:8080/license/licenseController/showallcodesByPage',
-                        url: urlconfig.getUrl('/hospitalController/showHospitalByPage'),
+                        url: urlconfig.getUrl('/hospital/showHospitalByPage'),
                         type: 'POST'
                     })
                     .withDataProp('data') //此处的data对应后台返回请求中的消息字段名,后台叫data这里就是data,后台叫user此处就必须为user

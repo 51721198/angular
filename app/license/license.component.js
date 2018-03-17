@@ -41,13 +41,13 @@ module('license', ['service', 'service.user', 'datatables', 'datatables.bootstra
                 self.dtOptions = DTOptionsBuilder.newOptions()
                     .withOption('ajax', {
                         // url: 'http://172.16.25.17:8080/license/licenseController/showallcodesByPage',
-                        url: urlconfig.getUrl('/licenseController/showallcodesByPage'),
+                        url: urlconfig.getUrl('/license/showallcodesByPage'),
                         type: 'POST',
                         headers: {
                             //"Content-Type": "application/json",       //加了此行会毁掉datatable的请求格式,导致出错
                             //"Access-Control-Allow-Credentials": "true",  //加在这里没用,要用$httpprovider才行
                             //"Access-Control-Allow-Origin": "http://localhost:8000",  //加了没有用,不能手动指定 
-                            "X-Token": $cookies.get('X-Token')
+                            'X-Token': $cookies.get('X-Token'),
                         }
                     })
                     .withDataProp('data') //此处的data对应后台返回请求中的消息字段名,后台叫data这里就是data,后台叫user此处就必须为user

@@ -6,8 +6,8 @@ module('urlconfig', ['ngResource'])
         var uri = getUri();
         var serverapi = uri.protocal + '://' + uri.host + ':' + uri.port + uri.path;
         var userpre = '/user';
-        var licensepre = '/licenseController';
-        var hospitalpre = '/hospitalController';
+        var licensepre = '/license';
+        var hospitalpre = '/hospital';
 
         function getUri() {
             var xhttp = new XMLHttpRequest();
