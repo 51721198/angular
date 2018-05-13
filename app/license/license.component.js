@@ -38,6 +38,7 @@ module('license', ['service', 'service.user', 'datatables', 'datatables.bootstra
                 // }).withPaginationType('full_numbers').withDisplayLength(10).withOption('rowCallback', rowCallback);
 
                 //ajax向后台请求分页数据
+                console.log("X-Token --> "+ $cookies.get('X-Token'))
                 self.dtOptions = DTOptionsBuilder.newOptions()
                     .withOption('ajax', {
                         // url: 'http://172.16.25.17:8080/license/licenseController/showallcodesByPage',

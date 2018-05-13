@@ -14,6 +14,7 @@ module('Auth', ['ngResource'])
                 userName = user.username;
                 //user.password = aUser.password;
                 $cookies.put('userName', userName, { 'expires': expireDate });
+                console.log('ready to put X-Token -->', authUUID)
                 $cookies.put('X-Token', authUUID);
             },
             isLoggedIn: function() {

@@ -49,9 +49,10 @@ component('login', {
                         defer.resolve(data);
                         defer.promise.then(function(data) {
                             console.log(data);
-                            if (data.resultcode >= 0) {
+                            if (data.resultcode >= 0 && data.resultcode != null) {
                                 console.log(JSON.stringify(person));
-                                Auth.setUser(JSON.stringify(person), data.resultdesc);
+                                console.log('!!!!!!!!!!!!!!!!!!!resultobject' + data.resultobject)
+                                Auth.setUser(JSON.stringify(person), data.resultobject);
 
                                 $location.path('/users');
                                 reloadRoute(); //如果不刷新页面,导航栏用户名会为空!!!

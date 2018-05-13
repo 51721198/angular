@@ -1,0 +1,1719 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"stop",
+				"STOP_SHADOWSOCKS"
+			],
+			[
+				"start",
+				"START_SHADOWSOCKS"
+			],
+			[
+				"sha",
+				"SHADOWSOCKS_HOME"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "B+树与二叉查找树，平衡查找树，红黑树的主要区别是，B+树是多叉树，一个父节点下可以拥有很多个子节点\nB+树的最大好处是树的深度比较低，假如树的每一层数据都存放在磁盘上的话，那么查询某一层的数据需要IO次数就会少\nB树的分支因子比较大，所以，B树可以在O（logn）时间内，实现各种增删改等操作\nB树的所有叶子节点都在同一层\nB+树和B树的关键区别：\n\t1.有n棵子树的结点中含有n-1 个关键字\n\t2.所有的叶子结点中包含了全部关键字的信息，及指向含有这些关键字记录的指针，且叶子结点本身依关键字的大小自小而大的顺序链接。 (而B 树的叶子节点并没有包括全部需要查找的信息)\n\t3.所有的非终端结点可以看成是索引部分，结点中仅含有其子树根结点中最大（或最小）关键字。 (而B 树的非终节点也包含需要查找的有效信息)\n\t4.数据库索引采用B+树的主要原因是 B树在提高了磁盘IO性能的同时并没有解决元素遍历的效率低下的问题。正是为了解决这个问题，B+树应运而生。B+树只要遍历叶子节点就可以实现整棵树的遍历。而且在数据库中基于范围的查询是非常频繁的，而B树不支持这样的操作（或者说效率太低）",
+			"settings":
+			{
+				"buffer_size": 495,
+				"line_ending": "Windows",
+				"name": "B+树与二叉查找树，平衡查找树，红黑树的主要区别是，B+树是多叉树，一个父节点下可以拥有很多个子节点"
+			}
+		},
+		{
+			"contents": "package com.kiwi.pandora.brick.service.checker;\n\nimport com.kiwi.pandora.core.dto.Message;\nimport com.kiwi.pandora.core.dto.Room;\nimport com.kiwi.pandora.core.enums.CheckResultEnum;\nimport com.kiwi.pandora.core.enums.PlayTypeEnum;\nimport com.kiwi.pandora.core.enums.WSCode;\nimport com.kiwi.pandora.service.Checker;\nimport com.kiwi.pandora.service.GameMapService;\nimport lombok.extern.slf4j.Slf4j;\nimport org.apache.commons.collections.CollectionUtils;\nimport org.springframework.stereotype.Service;\n\nimport javax.annotation.Resource;\nimport java.util.List;\n\n@Service\n@Slf4j//我的就是\npublic class ProgressChecker implements Checker\n{\n\t@Resource\n\tprivate GameMapService<List<Integer>> brickGameMapService;\n\n\t@Overrideddsadsajidsajdisadsa\n\tpublic CheckResultEnum doCheck(Room room, Message msg)\n\t{\n\n\t\t//1. msg校验\n\t\tif (msg.getCode() != WSCode.PLAYING.getCode() && msg.getCode() != WSCode.END.getCode())\n\t\t{\n\t\t\treturn CheckResultEnum.PASS;\n\t\t}\n\n\t\tif (!canRemove(room, msg)){\n\t\t\tlog.info(\"brick ProgressChecker check faild: room:{}, msg:{}\", room, msg);\n\t\t\treturn CheckResultEnum.REJECT;\n\t\t}\n\n\t\treturn CheckResultEnum.PASS;\n\t}\n\n\tprivate boolean canRemove(Room room, Message msg)\n\t{\n\t\tlog.info(\"brick ProgressChecker, start check, room:{}, msg:{}\", room, msg);\n\t\tList<Integer> gameMap = brickGameMapService.getGameMap(room.getRoomId(), PlayTypeEnum.COUPLE);\n\t\tif (CollectionUtils.isEmpty(gameMap)){\n\t\t\treturn false;\n\t\t}\n\n\t\tint level = (int) msg.getContent().get(\"level\");\n\n\t\treturn true;\n\t}\n}\n",
+			"settings":
+			{
+				"buffer_size": 1483,
+				"line_ending": "Windows",
+				"name": "package com.kiwi.pandora.brick.service.checker;"
+			}
+		},
+		{
+			"contents": "msg:Message(code=1400, content={uid=311824933, add=2, level=2, count=65, bricks=[3, 3, 3], index=62, progress=0.08156323681661885}\n\n\n\n\nmsg:Message(code=1400, content={uid=311824933, add=0, level=3, count=32, bricks=[0], index=0, progress=0.098053234478844}\nmsg:Message(code=1400, content={uid=311824933, add=0, level=4, count=32, bricks=[0], index=0, progress=0.19583101225662225}\nmsg:Message(code=1400, content={uid=311824933, add=0, level=5, count=32, bricks=[0], index=0, progress=0.2936087900344006}",
+			"settings":
+			{
+				"buffer_size": 503,
+				"line_ending": "Windows",
+				"name": "msg:Message(code=1400, content={uid=311824933, add"
+			}
+		},
+		{
+			"file": "/F/BaiduNetdiskDownload/office2016激活/使用说明.txt",
+			"settings":
+			{
+				"buffer_size": 1379,
+				"encoding": "Western (Windows 1252)",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "客户端给node1发送更新请求 -> es转发请求道主分片所在节点node3 -> node3从主分片检索出文档,修改_source字段内容后在主分片上重建索引 -> 如果有其他进程\n修改了文档,则重试制定次数,无法成功则放弃 -> node3转发文档到node1和node2上的复制节点以重建索引.",
+			"settings":
+			{
+				"buffer_size": 150,
+				"line_ending": "Windows",
+				"name": "客户端给node1发送更新请求 -> es转发请求道主分片所在节点node3 -> node3从主分"
+			}
+		},
+		{
+			"contents": "class AbstractQueuedSynchronizer{\n\t\n\t\t\n\t\tvolatile Node head;  //头节点,一般是当前持有锁的线程\n\n\t    volatile Node tail; //阻塞的尾节点,新节点一般都被插到链表尾\n\n\t    volatile int state;  //锁状态,为0表示锁没被占用,大于1表示已经被持有\n\t    \n\t    boolean compareAndSetState(int expect, int update){}\n\t    Node enq(Node node){}\n\t    Node addWaiter(Node node){}\n\t    void setHead(Node node){}\n\t    void unparkSuccessor(Node node){}\n\t    void doReleaseShared(){}\n\t    void setHeadAndPropagate(Node node, int propagate) {}\n\t    void cancelAcquire(Node node) {}\n\t    boolean shouldParkAfterFailedAcquire(Node pred, Node node) {}\n\t    boolean parkAndCheckInterrupt() {}\n\t    boolean acquireQueued(final Node node, int arg) {}\n\t    void doAcquireInterruptibly(int arg){}\n\t    boolean doAcquireNanos(int arg, long nanosTimeout){}\n\t    void doAcquireShared(int arg) {}\n\t    void doAcquireSharedInterruptibly(int arg){}\n\t    boolean doAcquireSharedNanos(int arg, long nanosTimeout){}\n\t    boolean tryAcquire(int arg)   //给子类实现\n\t\tboolean tryRelease(int arg)    //子类实现\n\t\tint tryAcquireShared(int arg) //子类实现\n\t\tboolean tryReleaseShared(int arg)  //子类实现\n\n\n}",
+			"file": "/F/google/原理图(重要资源!)/多线程/aqs源码",
+			"file_size": 178,
+			"file_write_time": 131686158903309416,
+			"settings":
+			{
+				"buffer_size": 1089,
+				"line_ending": "Windows",
+				"name": "class AbstractQueuedSynchronizer{"
+			}
+		},
+		{
+			"contents": "\n2018-04-20 16:20:22.542 logback [createRoom-pool-0] INFO  c.k.p.g.c.robot.AbstractRobotService:151 - @Robot get robotConfig, iniKey, robotConfig - robot.config.diamond.brick\n2018-04-20 16:20:22.542 logback [createRoom-pool-0] INFO  c.k.p.b.r.impl.BrickRobotServiceImpl:96 - @BrickRobot onRoomCreated. roomId - 20180420162022ROOM52909994000007, uid - 10089, robotUid - 700000008, speed - 100, brickRoomContext - BrickRoomContext(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1061, roomId=20180420162022ROOM52909994000007, uid=10089, robotUid=700000008, startTime=1524212422542, initialSpeed=100, prevExecTime=0, nextExecTime=0, percent=0, iAmReady=false, iShouldWin=true), eraseSuccessSequence=null, gameMap=null, level=2, index=0, indexModMax=0, eraseCount=0, loseTime=154384, progress=0.0, failed=false, speed=100, iniConfig=BrickRobotConfig(super=RobotConfig(winRate=100)))\n2018-04-20 16:20:27.515 logback [http-nio-7009-exec-1] INFO  c.k.p.g.c.w.i.WebSocketHandshakeInterceptor:134 - wap拦截器cookie数据为25C4D8B7BC8CFB54097414C21A18B005DBA061638804AC8523160B741B3CFD69FD5E2D9B1F5B8D02E82A273523899ECA9C1B956A9ABECAE1CD649AD2E8E23896|31C2CEC9BAFE08A34EF99AF818BC84655C22EAF6500C9FE710D8F0C04D98E0F31176C6D2D905ABE5FB3D2A180595F8DD，10089。\n2018-04-20 16:20:27.525 logback [http-nio-7009-exec-1] INFO  c.k.p.g.c.w.i.WebSocketHandshakeInterceptor:58 - HandshakeInterceptor uid:10089, roomId:20180420162022ROOM52909994000007, gameId:BrickDiamond\n2018-04-20 16:20:27.598 logback [http-nio-7009-exec-2] INFO  c.k.p.g.c.w.listener.WebSocketEvent:65 - sessionConnect event:SessionConnectEvent[GenericMessage [payload=byte[0], headers={simpMessageType=CONNECT, stompCommand=CONNECT, nativeHeaders={roomId=[20180420162022ROOM52909994000007], uid=[10089], clientId=[10089], accept-version=[1.1,1.0], heart-beat=[10000,10000]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420162022ROOM52909994000007}, simpHeartbeat=[J@78fb6410, simpSessionId=soonrcyf}]], uid:SimpMessageHeaderAccessor [headers={simpMessageType=CONNECT, stompCommand=CONNECT, nativeHeaders={roomId=[20180420162022ROOM52909994000007], uid=[10089], clientId=[10089], accept-version=[1.1,1.0], heart-beat=[10000,10000]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420162022ROOM52909994000007}, simpHeartbeat=[J@78fb6410, simpSessionId=soonrcyf}], roomId:10089, gameId:20180420162022ROOM52909994000007\n2018-04-20 16:20:27.600 logback [http-nio-7009-exec-2] INFO  c.k.p.g.c.w.listener.WebSocketEvent:73 - renew game_playing_couple caused by websocket connect! gameId - BrickDiamond , sessionId - soonrcyf\n2018-04-20 16:20:27.690 logback [http-nio-7009-exec-3] INFO  c.k.p.g.c.w.listener.WebSocketEvent:141 - sessionSubscribe event:SessionSubscribeEvent[GenericMessage [payload=byte[0], headers={simpMessageType=SUBSCRIBE, stompCommand=SUBSCRIBE, nativeHeaders={id=[sub-0], destination=[/topic/room/20180420162022ROOM52909994000007]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420162022ROOM52909994000007}, simpHeartbeat=[J@7fc7ee94, simpSubscriptionId=sub-0, simpSessionId=soonrcyf, simpDestination=/topic/room/20180420162022ROOM52909994000007}]], headers:SimpMessageHeaderAccessor [headers={simpMessageType=SUBSCRIBE, stompCommand=SUBSCRIBE, nativeHeaders={id=[sub-0], destination=[/topic/room/20180420162022ROOM52909994000007]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420162022ROOM52909994000007}, simpHeartbeat=[J@7fc7ee94, simpSubscriptionId=sub-0, simpSessionId=soonrcyf, simpDestination=/topic/room/20180420162022ROOM52909994000007}]\n2018-04-20 16:20:27.693 logback [clientInboundChannel-178] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1200, content={uid=10089, percent=100}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:27.694 logback [clientInboundChannel-178] INFO  c.k.p.service.AbstractWSGameService:308 - getUsersLoadStatus ALL_LOADED, room:Room(roomId=20180420162022ROOM52909994000007, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524212422529, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524212422529), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524212422529)})\n2018-04-20 16:20:27.694 logback [clientInboundChannel-178] INFO  c.k.p.service.AbstractWSGameService:91 - broadcast allUsersLoaded, room:Room(roomId=20180420162022ROOM52909994000007, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524212422529, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524212422529), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524212422529)})\n2018-04-20 16:20:27.697 logback [clientInboundChannel-178] INFO  c.k.p.s.i.DiamondHandleServiceImpl:67 - @钻石模式--更新操作日志状态Room：20180420162022ROOM52909994000007，游戏：BrickDiamond，fromStatus状态：0，toStatus状态：1。\n2018-04-20 16:20:27.697 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==>  Preparing: SELECT * from tb_match_log WHERE account_id = ? and game_id = ? and status = ? and `type` = ? order by create_time desc limit 1 \n2018-04-20 16:20:27.698 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==> Parameters: 10089(String), BrickDiamond(String), 0(Integer), 0(Integer)\n2018-04-20 16:20:27.700 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - <==      Total: 1\n2018-04-20 16:20:27.701 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==>  Preparing: select * from tb_match_log where log_id = ? \n2018-04-20 16:20:27.701 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==> Parameters: 20180420162022ROOM52909994000007gold700000008(String)\n2018-04-20 16:20:27.803 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - <==      Total: 1\n2018-04-20 16:20:27.804 logback [clientInboundChannel-178] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202776, logId=20180420162022log56009994000008, accountId=10089, gameId=BrickDiamond, status=1, type=0, userType=0, operateId=20180420162022ROOM52909994000007, createTime=2018-04-20T16:20:22, updateTime=2018-04-20T16:20:22)。\n2018-04-20 16:20:27.804 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:20:27.805 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420162022log56009994000008(String), 10089(String), BrickDiamond(String), 1(Integer), 20180420162022ROOM52909994000007(String), 20180420162022log56009994000008(String)\n2018-04-20 16:20:27.984 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:20:27.984 logback [clientInboundChannel-178] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202775, logId=20180420162022ROOM52909994000007gold700000008, accountId=700000008, gameId=BrickDiamond, status=1, type=0, userType=1, operateId=20180420162022ROOM52909994000007, createTime=2018-04-20T16:20:22, updateTime=2018-04-20T16:20:22)。\n2018-04-20 16:20:27.985 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:20:27.986 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420162022ROOM52909994000007gold700000008(String), 700000008(String), BrickDiamond(String), 1(Integer), 20180420162022ROOM52909994000007(String), 20180420162022ROOM52909994000007gold700000008(String)\n2018-04-20 16:20:28.164 logback [clientInboundChannel-178] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:20:31.329 logback [clientInboundChannel-181] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=2, count=1, progress=0.1918158158158153}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:31.395 logback [clientInboundChannel-184] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=1, progress=0.19507507507507454}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:32.300 logback [clientInboundChannel-187] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=1, progress=0.29285285285285145}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:32.387 logback [clientInboundChannel-190] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=2, count=2, progress=0.20533333333333376}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:33.207 logback [clientInboundChannel-193] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=4, count=2, progress=0.2933333333333344}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:34.070 logback [clientInboundChannel-196] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=2, count=4, progress=0.18999799799799877}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:34.094 logback [clientInboundChannel-199] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=4, progress=0.19325725725725804}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:34.997 logback [clientInboundChannel-202] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=4, count=4, progress=0.2910350350350366}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:35.000 logback [clientInboundChannel-202] INFO  c.k.p.service.AbstractWSGameService:137 - processGameEnd start. msg:Message(code=1400, content={add=0, uid=700000008, level=100, leave=true, progress=1.0}), room:Room(roomId=20180420162022ROOM52909994000007, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524212422529, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524212427695), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524212427695)}), isLoser\n2018-04-20 16:20:35.004 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - ==>  Preparing: insert into brick_battle (battle_id, game_id, account_id, opp_account_id, winner, point, record, match_type ) values (?, ?, ?, ?, ?, ?, ?, ? ) \n2018-04-20 16:20:35.005 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - ==> Parameters: 20180420162035BATTLE00309995000007(String), BrickDiamond(String), 10089(String), 700000008(String), 10089(String), 50(Integer), 4(String), 0(Integer)\n2018-04-20 16:20:35.007 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - <==    Updates: 1\n2018-04-20 16:20:35.007 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - ==>  Preparing: SELECT LAST_INSERT_ID() AS id \n2018-04-20 16:20:35.008 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - ==> Parameters: \n2018-04-20 16:20:35.009 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - <==      Total: 1\n2018-04-20 16:20:35.010 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, total_num, battle_num, win_num, tie_num, lose_num, single_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from brick_personal_summary where account_id = ? and game_id = ? \n2018-04-20 16:20:35.011 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==> Parameters: 10089(String), BrickDiamond(String)\n2018-04-20 16:20:35.013 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:20:35.014 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, total_num, battle_num, win_num, tie_num, lose_num, single_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from brick_personal_summary where account_id = ? and game_id = ? \n2018-04-20 16:20:35.015 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==> Parameters: 700000008(String), BrickDiamond(String)\n2018-04-20 16:20:35.016 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:20:35.017 logback [clientInboundChannel-202] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:219 - @钻石模式游戏结果处理--游戏gameId：BrickDiamond, 游戏平均分: 984, 赢家accountId：10089, 赢家的Kvalue：16, 初始隐藏分：1061, 更新后的隐藏分：1067---最高分：1067。\n2018-04-20 16:20:35.017 logback [clientInboundChannel-202] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:226 - @钻石模式游戏结果处理--游戏gameId：BrickDiamond, 游戏平均分: 984, 输家accountId：700000008, 输家的Kvalue：16, 初始隐藏分：992, 更新后的隐藏分：986---最高分：992。\n2018-04-20 16:20:35.018 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_personal_summary set game_id = ?, account_id = ?, user_type = ?, total_num = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:20:35.019 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 0(Integer), 9(Integer), 9(Integer), 9(Integer), 0(Integer), 0(Integer), 0(Integer), 9(Integer), 9(Integer), 1067(Integer), 1067(Integer), 10(String), 135(Integer)\n2018-04-20 16:20:35.020 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.021 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_personal_summary set game_id = ?, account_id = ?, user_type = ?, total_num = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:20:35.022 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 700000008(String), 1(Integer), 2(Integer), 2(Integer), 0(Integer), 0(Integer), 2(Integer), 0(Integer), 2(Integer), 0(Integer), 986(Integer), 992(Integer), (String), 136(Integer)\n2018-04-20 16:20:35.023 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.027 logback [clientInboundChannel-202] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:166 - MQ sendMsg end, topic:hw_gameSummary_brick, mqMsg:{action=1, info=[BizPersonalSummary(id=135, gameId=BrickDiamond, accountId=10089, userType=0, totalNum=9, battleNum=9, winNum=9, tieNum=0, loseNum=0, singleNum=0, gameMatchBattleNum=9, gameMatchWinNum=9, points=1067, bestPoints=1067, bestRecord=10, createTime=Fri Apr 20 15:37:22 CST 2018, updateTime=Fri Apr 20 16:12:48 CST 2018), BizPersonalSummary(id=136, gameId=BrickDiamond, accountId=700000008, userType=1, totalNum=2, battleNum=2, winNum=0, tieNum=0, loseNum=2, singleNum=0, gameMatchBattleNum=2, gameMatchWinNum=0, points=986, bestPoints=992, bestRecord=, createTime=Fri Apr 20 15:43:24 CST 2018, updateTime=Fri Apr 20 15:43:24 CST 2018)]}\n2018-04-20 16:20:35.028 logback [ConsumeMessageThread_7] INFO  c.k.p.g.c.config.MQConsumerConfig:86 - topic - hw_gameSummary_brick receive message - {\"action\":1,\"info\":[{\"id\":135,\"gameId\":\"BrickDiamond\",\"accountId\":\"10089\",\"userType\":0,\"totalNum\":9,\"battleNum\":9,\"winNum\":9,\"tieNum\":0,\"loseNum\":0,\"singleNum\":0,\"gameMatchBattleNum\":9,\"gameMatchWinNum\":9,\"points\":1067,\"bestPoints\":1067,\"bestRecord\":\"10\",\"createTime\":\"2018-04-20 15:37:22\",\"updateTime\":\"2018-04-20 16:12:48\"},{\"id\":136,\"gameId\":\"BrickDiamond\",\"accountId\":\"700000008\",\"userType\":1,\"totalNum\":2,\"battleNum\":2,\"winNum\":0,\"tieNum\":0,\"loseNum\":2,\"singleNum\":0,\"gameMatchBattleNum\":2,\"gameMatchWinNum\":0,\"points\":986,\"bestPoints\":992,\"bestRecord\":\"\",\"createTime\":\"2018-04-20 15:43:24\",\"updateTime\":\"2018-04-20 15:43:24\"}]}\n2018-04-20 16:20:35.028 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - ==>  Preparing: select id, game_id, account_id, opp_account_id, battle_num, win_num, tie_num, lose_num, create_time, update_time from brick_couple_summary where account_id = ? AND opp_account_id = ? AND game_id = ? \n2018-04-20 16:20:35.028 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - ==> Parameters: 10089(String), 700000008(String), BrickDiamond(String)\n2018-04-20 16:20:35.030 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, battle_num, win_num, tie_num, lose_num, single_num, total_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from personal_summary where account_id = ? AND game_id = ? \n2018-04-20 16:20:35.030 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==> Parameters: 10089(String), BrickDiamond(String)\n2018-04-20 16:20:35.031 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - <==      Total: 1\n2018-04-20 16:20:35.032 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_couple_summary set game_id = ?, account_id = ?, opp_account_id = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ? where id = ? \n2018-04-20 16:20:35.032 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 700000008(String), 2(Integer), 2(Integer), 0(Integer), 0(Integer), 506(Integer)\n2018-04-20 16:20:35.033 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:20:35.034 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - ==>  Preparing: update personal_summary set game_id = ?, account_id = ?, user_type = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, total_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:20:35.034 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 0(Integer), 9(Integer), 9(Integer), 0(Integer), 0(Integer), 0(Integer), 9(Integer), 9(Integer), 9(Integer), 1067(Integer), 1067(Integer), 10(String), 2378(Integer)\n2018-04-20 16:20:35.038 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.039 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.044 logback [clientInboundChannel-202] INFO  c.k.p.s.i.BizCoupleSummaryServiceImpl:86 - MQ sendMsg end, topic:hw_gameSummary_brick, mqMsg:{action=2, info=BizCoupleSummary(id=506, gameId=BrickDiamond, accountId=10089, oppAccountId=700000008, battleNum=2, winNum=2, tieNum=0, loseNum=0, createTime=Fri Apr 20 15:43:24 CST 2018, updateTime=Fri Apr 20 15:43:24 CST 2018)}\n2018-04-20 16:20:35.045 logback [ConsumeMessageThread_8] INFO  c.k.p.g.c.config.MQConsumerConfig:86 - topic - hw_gameSummary_brick receive message - {\"action\":2,\"info\":{\"id\":506,\"gameId\":\"BrickDiamond\",\"accountId\":\"10089\",\"oppAccountId\":\"700000008\",\"battleNum\":2,\"winNum\":2,\"tieNum\":0,\"loseNum\":0,\"createTime\":\"2018-04-20 15:43:24\",\"updateTime\":\"2018-04-20 15:43:24\"}}\n2018-04-20 16:20:35.045 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, battle_num, win_num, tie_num, lose_num, single_num, total_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from personal_summary where account_id = ? AND game_id = ? \n2018-04-20 16:20:35.045 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==> Parameters: 700000008(String), BrickDiamond(String)\n2018-04-20 16:20:35.046 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - ==>  Preparing: select id, game_id, account_id, opp_account_id, battle_num, win_num, tie_num, lose_num, create_time, update_time from couple_summary where account_id = ? AND opp_account_id = ? AND game_id = ? \n2018-04-20 16:20:35.047 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:20:35.047 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - ==> Parameters: 10089(String), 700000008(String), BrickDiamond(String)\n2018-04-20 16:20:35.048 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - ==>  Preparing: update personal_summary set game_id = ?, account_id = ?, user_type = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, total_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:20:35.048 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - ==> Parameters: BrickDiamond(String), 700000008(String), 1(Integer), 2(Integer), 0(Integer), 0(Integer), 2(Integer), 0(Integer), 2(Integer), 2(Integer), 0(Integer), 986(Integer), 992(Integer), (String), 2381(Integer)\n2018-04-20 16:20:35.050 logback [ConsumeMessageThread_7] DEBUG c.k.p.d.d.c.P.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.053 logback [clientInboundChannel-202] INFO  c.k.p.s.i.DiamondHandleServiceImpl:124 - @钻石模式--游戏结果处理，操作日志处理Room：20180420162022ROOM52909994000007，游戏：BrickDiamond。\n2018-04-20 16:20:35.054 logback [clientInboundChannel-202] INFO  c.k.p.s.i.DiamondHandleServiceImpl:67 - @钻石模式--更新操作日志状态Room：20180420162022ROOM52909994000007，游戏：BrickDiamond，fromStatus状态：1，toStatus状态：3。\n2018-04-20 16:20:35.054 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - <==      Total: 1\n2018-04-20 16:20:35.055 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.updateById:145 - ==>  Preparing: update couple_summary set game_id = ?, account_id = ?, opp_account_id = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ? where id = ? \n2018-04-20 16:20:35.056 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 700000008(String), 2(Integer), 2(Integer), 0(Integer), 0(Integer), 1594(Integer)\n2018-04-20 16:20:35.056 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==>  Preparing: SELECT * from tb_match_log WHERE account_id = ? and game_id = ? and status = ? and `type` = ? order by create_time desc limit 1 \n2018-04-20 16:20:35.056 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==> Parameters: 10089(String), BrickDiamond(String), 1(Integer), 0(Integer)\n2018-04-20 16:20:35.058 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - <==      Total: 1\n2018-04-20 16:20:35.058 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==>  Preparing: select * from tb_match_log where log_id = ? \n2018-04-20 16:20:35.059 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==> Parameters: 20180420162022ROOM52909994000007gold700000008(String)\n2018-04-20 16:20:35.059 logback [ConsumeMessageThread_8] DEBUG c.k.p.d.d.c.C.updateById:145 - <==    Updates: 1\n2018-04-20 16:20:35.164 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - <==      Total: 1\n2018-04-20 16:20:35.165 logback [clientInboundChannel-202] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202776, logId=20180420162022log56009994000008, accountId=10089, gameId=BrickDiamond, status=3, type=0, userType=0, operateId=20180420162022ROOM52909994000007, createTime=2018-04-20T16:20:22, updateTime=2018-04-20T16:20:27)。\n2018-04-20 16:20:35.165 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:20:35.166 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420162022log56009994000008(String), 10089(String), BrickDiamond(String), 3(Integer), 20180420162022ROOM52909994000007(String), 20180420162022log56009994000008(String)\n2018-04-20 16:20:35.349 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:20:35.350 logback [clientInboundChannel-202] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202775, logId=20180420162022ROOM52909994000007gold700000008, accountId=700000008, gameId=BrickDiamond, status=3, type=0, userType=1, operateId=20180420162022ROOM52909994000007, createTime=2018-04-20T16:20:22, updateTime=2018-04-20T16:20:27)。\n2018-04-20 16:20:35.351 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:20:35.351 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420162022ROOM52909994000007gold700000008(String), 700000008(String), BrickDiamond(String), 3(Integer), 20180420162022ROOM52909994000007(String), 20180420162022ROOM52909994000007gold700000008(String)\n2018-04-20 16:20:35.534 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:20:35.535 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - ==>  Preparing: insert into tb_match_log (log_id, account_id, game_id, status, `type`, user_type, operate_id ) values (?, ?, ?, ?, ?, ?, ? ) \n2018-04-20 16:20:35.536 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - ==> Parameters: 20180420162035log53509995000008(String), 10089(String), BrickDiamond(String), 11(Integer), 1(Integer), 0(Integer), 20180420162022ROOM52909994000007(String)\n2018-04-20 16:20:35.538 logback [clientInboundChannel-202] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - <==    Updates: 1\n2018-04-20 16:20:35.538 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - ==>  Preparing: SELECT LAST_INSERT_ID() AS id \n2018-04-20 16:20:35.539 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - ==> Parameters: \n2018-04-20 16:20:35.539 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - <==      Total: 1\n2018-04-20 16:20:35.540 logback [clientInboundChannel-202] INFO  c.k.p.s.i.DiamondHandleServiceImpl:142 - @钻石模式--增加用户钻石日志matchLog：MatchLog(id=202777, logId=20180420162035log53509995000008, accountId=10089, gameId=BrickDiamond, status=11, type=1, userType=0, operateId=20180420162022ROOM52909994000007, createTime=null, updateTime=null)。\n2018-04-20 16:20:35.542 logback [clientInboundChannel-202] INFO  c.k.p.service.AbstractWSGameService:262 - @钻石模式--调用RPC接口，确认减少金币。\n2018-04-20 16:20:35.555 logback [clientInboundChannel-202] INFO  c.k.p.service.AbstractWSGameService:219 - @钻石模式--调用RPC接口，赢家处理，调用RPC接口，增加钻石。\n2018-04-20 16:20:35.566 logback [clientInboundChannel-202] INFO  c.k.p.service.AbstractWSGameService:239 - 用户：10089，钻石模式房间：20180420162022ROOM52909994000007-正确增加钻石。\n2018-04-20 16:20:35.567 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:20:35.567 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420162035log53509995000008(String), 10089(String), BrickDiamond(String), 12(Integer), 20180420162022ROOM52909994000007(String), 20180420162035log53509995000008(String)\n2018-04-20 16:20:35.569 logback [clientInboundChannel-205] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=5, progress=0.2556636636636655}), roomId:20180420162022ROOM52909994000007\n2018-04-20 16:20:35.750 logback [clientInboundChannel-202] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:20:35.751 logback [clientInboundChannel-202] INFO  c.k.p.service.AbstractWSGameService:170 - processGameEnd end. resultMsg:Message(code=1500, content={uid=10089, cost=00:07:307, leave=true, record=4})\n2018-04-20 16:20:38.606 logback [http-nio-7009-exec-5] INFO  c.k.p.g.c.w.listener.WebSocketEvent:93 - sessionDisconnect event start, uid:10089, roomId:20180420162022ROOM52909994000007, gameId:BrickDiamond\n2018-04-20 16:20:38.607 logback [http-nio-7009-exec-5] INFO  c.k.p.g.c.w.listener.WebSocketEvent:131 - renew game_playing_couple caused by websocket disconnect! gameId - BrickDiamond, sessionId - soonrcyf\n2018-04-20 16:20:38.607 logback [http-nio-7009-exec-5] INFO  c.k.p.g.c.w.listener.WebSocketEvent:134 - sessionDisconnect event end, uid:10089, roomId:20180420162022ROOM52909994000007, gameId:BrickDiamond, room:null\n",
+			"settings":
+			{
+				"buffer_size": 30016,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "2018-04-20 16:44:49.096 logback [http-nio-7009-exec-3] INFO  c.k.p.g.c.w.i.WebSocketHandshakeInterceptor:134 - wap拦截器cookie数据为B6DFF84CB03417A3B9C4FB07C33A20A351FF462BA358024D755C448671809C9E0F2373DC5E438881CD1856E24B707FB3EE10B3F626C8FBB35ABB0A972D575BC1|96094437E1EF44E6054E5C62D224126C6AF0DA8C28616E168DFCFE80C2E39A44E72B388592E3943370D6094B4C4F585F，10089。\n2018-04-20 16:44:49.102 logback [http-nio-7009-exec-3] INFO  c.k.p.g.c.w.i.WebSocketHandshakeInterceptor:58 - HandshakeInterceptor uid:10089, roomId:20180420164445ROOM74009994000021, gameId:BrickDiamond\n2018-04-20 16:44:49.125 logback [http-nio-7009-exec-6] INFO  c.k.p.g.c.w.listener.WebSocketEvent:65 - sessionConnect event:SessionConnectEvent[GenericMessage [payload=byte[0], headers={simpMessageType=CONNECT, stompCommand=CONNECT, nativeHeaders={roomId=[20180420164445ROOM74009994000021], uid=[10089], clientId=[10089], accept-version=[1.1,1.0], heart-beat=[10000,10000]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420164445ROOM74009994000021}, simpHeartbeat=[J@1f7a16d4, simpSessionId=fyoru0ci}]], uid:SimpMessageHeaderAccessor [headers={simpMessageType=CONNECT, stompCommand=CONNECT, nativeHeaders={roomId=[20180420164445ROOM74009994000021], uid=[10089], clientId=[10089], accept-version=[1.1,1.0], heart-beat=[10000,10000]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420164445ROOM74009994000021}, simpHeartbeat=[J@1f7a16d4, simpSessionId=fyoru0ci}], roomId:10089, gameId:20180420164445ROOM74009994000021\n2018-04-20 16:44:49.127 logback [http-nio-7009-exec-6] INFO  c.k.p.g.c.w.listener.WebSocketEvent:73 - renew game_playing_couple caused by websocket connect! gameId - BrickDiamond , sessionId - fyoru0ci\n2018-04-20 16:44:49.156 logback [http-nio-7009-exec-5] INFO  c.k.p.g.c.w.listener.WebSocketEvent:141 - sessionSubscribe event:SessionSubscribeEvent[GenericMessage [payload=byte[0], headers={simpMessageType=SUBSCRIBE, stompCommand=SUBSCRIBE, nativeHeaders={id=[sub-0], destination=[/topic/room/20180420164445ROOM74009994000021]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420164445ROOM74009994000021}, simpHeartbeat=[J@3cc1536e, simpSubscriptionId=sub-0, simpSessionId=fyoru0ci, simpDestination=/topic/room/20180420164445ROOM74009994000021}]], headers:SimpMessageHeaderAccessor [headers={simpMessageType=SUBSCRIBE, stompCommand=SUBSCRIBE, nativeHeaders={id=[sub-0], destination=[/topic/room/20180420164445ROOM74009994000021]}, simpSessionAttributes={gameId=BrickDiamond, uid=10089, roomId=20180420164445ROOM74009994000021}, simpHeartbeat=[J@3cc1536e, simpSubscriptionId=sub-0, simpSessionId=fyoru0ci, simpDestination=/topic/room/20180420164445ROOM74009994000021}]\n2018-04-20 16:44:49.157 logback [clientInboundChannel-436] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1200, content={uid=10089, percent=100}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:49.158 logback [clientInboundChannel-436] INFO  c.k.p.service.AbstractWSGameService:308 - getUsersLoadStatus ALL_LOADED, room:Room(roomId=20180420164445ROOM74009994000021, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524213885740, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524213885740), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524213885740)})\n2018-04-20 16:44:49.159 logback [clientInboundChannel-436] INFO  c.k.p.service.AbstractWSGameService:91 - broadcast allUsersLoaded, room:Room(roomId=20180420164445ROOM74009994000021, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524213885740, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524213885740), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524213885740)})\n2018-04-20 16:44:49.161 logback [clientInboundChannel-436] INFO  c.k.p.s.i.DiamondHandleServiceImpl:67 - @钻石模式--更新操作日志状态Room：20180420164445ROOM74009994000021，游戏：BrickDiamond，fromStatus状态：0，toStatus状态：1。\n2018-04-20 16:44:49.162 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==>  Preparing: SELECT * from tb_match_log WHERE account_id = ? and game_id = ? and status = ? and `type` = ? order by create_time desc limit 1 \n2018-04-20 16:44:49.162 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==> Parameters: 10089(String), BrickDiamond(String), 0(Integer), 0(Integer)\n2018-04-20 16:44:49.164 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - <==      Total: 1\n2018-04-20 16:44:49.165 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==>  Preparing: select * from tb_match_log where log_id = ? \n2018-04-20 16:44:49.165 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==> Parameters: 20180420164445ROOM74009994000021gold700000008(String)\n2018-04-20 16:44:49.271 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - <==      Total: 1\n2018-04-20 16:44:49.272 logback [clientInboundChannel-436] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202793, logId=20180420164445log76809994000022, accountId=10089, gameId=BrickDiamond, status=1, type=0, userType=0, operateId=20180420164445ROOM74009994000021, createTime=2018-04-20T16:44:45, updateTime=2018-04-20T16:44:45)。\n2018-04-20 16:44:49.273 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:44:49.273 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420164445log76809994000022(String), 10089(String), BrickDiamond(String), 1(Integer), 20180420164445ROOM74009994000021(String), 20180420164445log76809994000022(String)\n2018-04-20 16:44:49.448 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:44:49.449 logback [clientInboundChannel-436] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202792, logId=20180420164445ROOM74009994000021gold700000008, accountId=700000008, gameId=BrickDiamond, status=1, type=0, userType=1, operateId=20180420164445ROOM74009994000021, createTime=2018-04-20T16:44:45, updateTime=2018-04-20T16:44:45)。\n2018-04-20 16:44:49.450 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:44:49.450 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420164445ROOM74009994000021gold700000008(String), 700000008(String), BrickDiamond(String), 1(Integer), 20180420164445ROOM74009994000021(String), 20180420164445ROOM74009994000021gold700000008(String)\n2018-04-20 16:44:49.629 logback [clientInboundChannel-436] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:44:51.463 logback [clientInboundChannel-439] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=2, count=1, progress=0.13966766766766772}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:51.777 logback [clientInboundChannel-442] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=1, progress=0.19507507507507552}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:52.228 logback [clientInboundChannel-445] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=2, count=2, progress=0.18577777777777807}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:52.268 logback [clientInboundChannel-448] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=3, count=2, progress=0.1955555555555559}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:52.774 logback [clientInboundChannel-451] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=4, count=2, progress=0.2933333333333344}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:53.424 logback [clientInboundChannel-454] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=5, count=2, progress=0.39111111111111235}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:53.431 logback [clientInboundChannel-457] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=4, count=3, progress=0.3231471471471459}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:53.765 logback [clientInboundChannel-460] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=4, count=3, progress=0.3883323323323305}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:53.803 logback [clientInboundChannel-463] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=5, count=3, progress=0.4921481481481462}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:54.291 logback [clientInboundChannel-466] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=6, count=3, progress=0.5801481481481455}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:54.354 logback [clientInboundChannel-469] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=6, count=3, progress=0.5964444444444417}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:54.762 logback [clientInboundChannel-472] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=8, count=3, progress=0.6746666666666632}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:55.206 logback [clientInboundChannel-475] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=8, count=3, progress=0.7333333333333293}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:55.254 logback [clientInboundChannel-478] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=8, count=3, progress=0.77244444444444}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:55.303 logback [clientInboundChannel-481] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=5, count=6, progress=0.493589589589591}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:55.758 logback [clientInboundChannel-484] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=7, count=6, progress=0.5815895895895902}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:56.026 logback [clientInboundChannel-487] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=6, count=7, progress=0.5364404404404416}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:56.401 logback [clientInboundChannel-490] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=7, count=7, progress=0.5820700700700708}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:56.408 logback [clientInboundChannel-490] INFO  c.k.p.service.AbstractWSGameService:137 - processGameEnd start. msg:Message(code=1400, content={add=0, uid=700000008, level=100, leave=true, progress=1.0}), room:Room(roomId=20180420164445ROOM74009994000021, gameId=BrickDiamond, pass=null, totalNumber=2, nowNumber=2, robotUid=700000008, matchType=0, createTime=1524213885740, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524213889160), 700000008=UserContext(accountId=700000008, gameStatus=2, readyTime=1524213889160)}), isLoser\n2018-04-20 16:44:56.413 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - ==>  Preparing: insert into brick_battle (battle_id, game_id, account_id, opp_account_id, winner, point, record, match_type ) values (?, ?, ?, ?, ?, ?, ?, ? ) \n2018-04-20 16:44:56.414 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - ==> Parameters: 20180420164456BATTLE41209995000010(String), BrickDiamond(String), 10089(String), 700000008(String), 10089(String), 50(Integer), 7(String), 0(Integer)\n2018-04-20 16:44:56.416 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.biz.BizBattleDao.insert:145 - <==    Updates: 1\n2018-04-20 16:44:56.416 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - ==>  Preparing: SELECT LAST_INSERT_ID() AS id \n2018-04-20 16:44:56.416 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - ==> Parameters: \n2018-04-20 16:44:56.417 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.insert!selectKey:145 - <==      Total: 1\n2018-04-20 16:44:56.418 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, total_num, battle_num, win_num, tie_num, lose_num, single_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from brick_personal_summary where account_id = ? and game_id = ? \n2018-04-20 16:44:56.418 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==> Parameters: 10089(String), BrickDiamond(String)\n2018-04-20 16:44:56.419 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:44:56.420 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, total_num, battle_num, win_num, tie_num, lose_num, single_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from brick_personal_summary where account_id = ? and game_id = ? \n2018-04-20 16:44:56.420 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - ==> Parameters: 700000008(String), BrickDiamond(String)\n2018-04-20 16:44:56.421 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:44:56.422 logback [clientInboundChannel-490] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:219 - @钻石模式游戏结果处理--游戏gameId：BrickDiamond, 游戏平均分: 990, 赢家accountId：10089, 赢家的Kvalue：16, 初始隐藏分：1091, 更新后的隐藏分：1096---最高分：1096。\n2018-04-20 16:44:56.422 logback [clientInboundChannel-490] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:226 - @钻石模式游戏结果处理--游戏gameId：BrickDiamond, 游戏平均分: 990, 输家accountId：700000008, 输家的Kvalue：32, 初始隐藏分：968, 更新后的隐藏分：957---最高分：992。\n2018-04-20 16:44:56.423 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_personal_summary set game_id = ?, account_id = ?, user_type = ?, total_num = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:44:56.423 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 0(Integer), 14(Integer), 14(Integer), 14(Integer), 0(Integer), 0(Integer), 0(Integer), 14(Integer), 14(Integer), 1096(Integer), 1096(Integer), 10(String), 135(Integer)\n2018-04-20 16:44:56.424 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.425 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_personal_summary set game_id = ?, account_id = ?, user_type = ?, total_num = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:44:56.425 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 700000008(String), 1(Integer), 5(Integer), 5(Integer), 0(Integer), 0(Integer), 5(Integer), 0(Integer), 5(Integer), 0(Integer), 957(Integer), 992(Integer), (String), 136(Integer)\n2018-04-20 16:44:56.426 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.428 logback [clientInboundChannel-490] INFO  c.k.p.s.i.BizPersonalSummaryServiceImpl:166 - MQ sendMsg end, topic:hw_gameSummary_brick, mqMsg:{action=1, info=[BizPersonalSummary(id=135, gameId=BrickDiamond, accountId=10089, userType=0, totalNum=14, battleNum=14, winNum=14, tieNum=0, loseNum=0, singleNum=0, gameMatchBattleNum=14, gameMatchWinNum=14, points=1096, bestPoints=1096, bestRecord=10, createTime=Fri Apr 20 15:37:22 CST 2018, updateTime=Fri Apr 20 16:43:50 CST 2018), BizPersonalSummary(id=136, gameId=BrickDiamond, accountId=700000008, userType=1, totalNum=5, battleNum=5, winNum=0, tieNum=0, loseNum=5, singleNum=0, gameMatchBattleNum=5, gameMatchWinNum=0, points=957, bestPoints=992, bestRecord=, createTime=Fri Apr 20 15:43:24 CST 2018, updateTime=Fri Apr 20 16:43:22 CST 2018)]}\n2018-04-20 16:44:56.429 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - ==>  Preparing: select id, game_id, account_id, opp_account_id, battle_num, win_num, tie_num, lose_num, create_time, update_time from brick_couple_summary where account_id = ? AND opp_account_id = ? AND game_id = ? \n2018-04-20 16:44:56.429 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - ==> Parameters: 10089(String), 700000008(String), BrickDiamond(String)\n2018-04-20 16:44:56.431 logback [ConsumeMessageThread_13] INFO  c.k.p.g.c.config.MQConsumerConfig:86 - topic - hw_gameSummary_brick receive message - {\"action\":1,\"info\":[{\"id\":135,\"gameId\":\"BrickDiamond\",\"accountId\":\"10089\",\"userType\":0,\"totalNum\":14,\"battleNum\":14,\"winNum\":14,\"tieNum\":0,\"loseNum\":0,\"singleNum\":0,\"gameMatchBattleNum\":14,\"gameMatchWinNum\":14,\"points\":1096,\"bestPoints\":1096,\"bestRecord\":\"10\",\"createTime\":\"2018-04-20 15:37:22\",\"updateTime\":\"2018-04-20 16:43:50\"},{\"id\":136,\"gameId\":\"BrickDiamond\",\"accountId\":\"700000008\",\"userType\":1,\"totalNum\":5,\"battleNum\":5,\"winNum\":0,\"tieNum\":0,\"loseNum\":5,\"singleNum\":0,\"gameMatchBattleNum\":5,\"gameMatchWinNum\":0,\"points\":957,\"bestPoints\":992,\"bestRecord\":\"\",\"createTime\":\"2018-04-20 15:43:24\",\"updateTime\":\"2018-04-20 16:43:22\"}]}\n2018-04-20 16:44:56.431 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.selectByAccountIds:145 - <==      Total: 1\n2018-04-20 16:44:56.432 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==>  Preparing: update brick_couple_summary set game_id = ?, account_id = ?, opp_account_id = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ? where id = ? \n2018-04-20 16:44:56.432 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, battle_num, win_num, tie_num, lose_num, single_num, total_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from personal_summary where account_id = ? AND game_id = ? \n2018-04-20 16:44:56.432 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 700000008(String), 5(Integer), 5(Integer), 0(Integer), 0(Integer), 506(Integer)\n2018-04-20 16:44:56.433 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==> Parameters: 10089(String), BrickDiamond(String)\n2018-04-20 16:44:56.434 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.b.B.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.435 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:44:56.435 logback [clientInboundChannel-490] INFO  c.k.p.s.i.BizCoupleSummaryServiceImpl:86 - MQ sendMsg end, topic:hw_gameSummary_brick, mqMsg:{action=2, info=BizCoupleSummary(id=506, gameId=BrickDiamond, accountId=10089, oppAccountId=700000008, battleNum=5, winNum=5, tieNum=0, loseNum=0, createTime=Fri Apr 20 15:43:24 CST 2018, updateTime=Fri Apr 20 16:43:22 CST 2018)}\n2018-04-20 16:44:56.436 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - ==>  Preparing: update personal_summary set game_id = ?, account_id = ?, user_type = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, total_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:44:56.436 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 0(Integer), 14(Integer), 14(Integer), 0(Integer), 0(Integer), 0(Integer), 14(Integer), 14(Integer), 14(Integer), 1096(Integer), 1096(Integer), 10(String), 2378(Integer)\n2018-04-20 16:44:56.438 logback [clientInboundChannel-490] INFO  c.k.p.s.i.DiamondHandleServiceImpl:124 - @钻石模式--游戏结果处理，操作日志处理Room：20180420164445ROOM74009994000021，游戏：BrickDiamond。\n2018-04-20 16:44:56.438 logback [clientInboundChannel-490] INFO  c.k.p.s.i.DiamondHandleServiceImpl:67 - @钻石模式--更新操作日志状态Room：20180420164445ROOM74009994000021，游戏：BrickDiamond，fromStatus状态：1，toStatus状态：3。\n2018-04-20 16:44:56.439 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==>  Preparing: SELECT * from tb_match_log WHERE account_id = ? and game_id = ? and status = ? and `type` = ? order by create_time desc limit 1 \n2018-04-20 16:44:56.439 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - ==> Parameters: 10089(String), BrickDiamond(String), 1(Integer), 0(Integer)\n2018-04-20 16:44:56.440 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectLatestLogByConditionMap:145 - <==      Total: 1\n2018-04-20 16:44:56.441 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==>  Preparing: select * from tb_match_log where log_id = ? \n2018-04-20 16:44:56.441 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - ==> Parameters: 20180420164445ROOM74009994000021gold700000008(String)\n2018-04-20 16:44:56.444 logback [ConsumeMessageThread_14] INFO  c.k.p.g.c.config.MQConsumerConfig:86 - topic - hw_gameSummary_brick receive message - {\"action\":2,\"info\":{\"id\":506,\"gameId\":\"BrickDiamond\",\"accountId\":\"10089\",\"oppAccountId\":\"700000008\",\"battleNum\":5,\"winNum\":5,\"tieNum\":0,\"loseNum\":0,\"createTime\":\"2018-04-20 15:43:24\",\"updateTime\":\"2018-04-20 16:43:22\"}}\n2018-04-20 16:44:56.445 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.446 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - ==>  Preparing: select id, game_id, account_id, opp_account_id, battle_num, win_num, tie_num, lose_num, create_time, update_time from couple_summary where account_id = ? AND opp_account_id = ? AND game_id = ? \n2018-04-20 16:44:56.446 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - ==> Parameters: 10089(String), 700000008(String), BrickDiamond(String)\n2018-04-20 16:44:56.447 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.selectByAccountIdsAndGameId:145 - <==      Total: 1\n2018-04-20 16:44:56.448 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.updateById:145 - ==>  Preparing: update couple_summary set game_id = ?, account_id = ?, opp_account_id = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ? where id = ? \n2018-04-20 16:44:56.449 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.updateById:145 - ==> Parameters: BrickDiamond(String), 10089(String), 700000008(String), 5(Integer), 5(Integer), 0(Integer), 0(Integer), 1594(Integer)\n2018-04-20 16:44:56.450 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==>  Preparing: select id, game_id, account_id, user_type, battle_num, win_num, tie_num, lose_num, single_num, total_num, game_match_battle_num, game_match_win_num, points, best_points, best_record, create_time, update_time from personal_summary where account_id = ? AND game_id = ? \n2018-04-20 16:44:56.450 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - ==> Parameters: 700000008(String), BrickDiamond(String)\n2018-04-20 16:44:56.451 logback [ConsumeMessageThread_14] DEBUG c.k.p.d.d.c.C.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.452 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.selectByAccountIdAndGameId:145 - <==      Total: 1\n2018-04-20 16:44:56.452 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - ==>  Preparing: update personal_summary set game_id = ?, account_id = ?, user_type = ?, battle_num = ?, win_num = ?, tie_num = ?, lose_num = ?, single_num = ?, total_num = ?, game_match_battle_num = ?, game_match_win_num = ?, points = ?, best_points = ?, best_record = ? where id = ? \n2018-04-20 16:44:56.453 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - ==> Parameters: BrickDiamond(String), 700000008(String), 1(Integer), 5(Integer), 0(Integer), 0(Integer), 5(Integer), 0(Integer), 5(Integer), 5(Integer), 0(Integer), 957(Integer), 992(Integer), (String), 2381(Integer)\n2018-04-20 16:44:56.454 logback [ConsumeMessageThread_13] DEBUG c.k.p.d.d.c.P.updateById:145 - <==    Updates: 1\n2018-04-20 16:44:56.545 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.selectByLogId:145 - <==      Total: 1\n2018-04-20 16:44:56.546 logback [clientInboundChannel-490] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202793, logId=20180420164445log76809994000022, accountId=10089, gameId=BrickDiamond, status=3, type=0, userType=0, operateId=20180420164445ROOM74009994000021, createTime=2018-04-20T16:44:45, updateTime=2018-04-20T16:44:49)。\n2018-04-20 16:44:56.546 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:44:56.547 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420164445log76809994000022(String), 10089(String), BrickDiamond(String), 3(Integer), 20180420164445ROOM74009994000021(String), 20180420164445log76809994000022(String)\n2018-04-20 16:44:56.569 logback [clientInboundChannel-493] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=6, count=8, progress=0.5434394394394375}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:56.738 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:44:56.739 logback [clientInboundChannel-490] INFO  c.k.p.s.i.DiamondHandleServiceImpl:93 - @钻石模式--更新用户扣除金币入职matchLog：MatchLog(id=202792, logId=20180420164445ROOM74009994000021gold700000008, accountId=700000008, gameId=BrickDiamond, status=3, type=0, userType=1, operateId=20180420164445ROOM74009994000021, createTime=2018-04-20T16:44:45, updateTime=2018-04-20T16:44:49)。\n2018-04-20 16:44:56.740 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:44:56.740 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420164445ROOM74009994000021gold700000008(String), 700000008(String), BrickDiamond(String), 3(Integer), 20180420164445ROOM74009994000021(String), 20180420164445ROOM74009994000021gold700000008(String)\n2018-04-20 16:44:56.751 logback [clientInboundChannel-496] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=7, count=8, progress=0.579291291291289}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:56.915 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:44:56.917 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - ==>  Preparing: insert into tb_match_log (log_id, account_id, game_id, status, `type`, user_type, operate_id ) values (?, ?, ?, ?, ?, ?, ? ) \n2018-04-20 16:44:56.917 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - ==> Parameters: 20180420164456log91609995000011(String), 10089(String), BrickDiamond(String), 11(Integer), 1(Integer), 0(Integer), 20180420164445ROOM74009994000021(String)\n2018-04-20 16:44:56.918 logback [clientInboundChannel-490] DEBUG c.k.p.d.dao.comm.MatchLogDao.insert:145 - <==    Updates: 1\n2018-04-20 16:44:56.919 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - ==>  Preparing: SELECT LAST_INSERT_ID() AS id \n2018-04-20 16:44:56.919 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - ==> Parameters: \n2018-04-20 16:44:56.920 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.insert!selectKey:145 - <==      Total: 1\n2018-04-20 16:44:56.920 logback [clientInboundChannel-490] INFO  c.k.p.s.i.DiamondHandleServiceImpl:142 - @钻石模式--增加用户钻石日志matchLog：MatchLog(id=202794, logId=20180420164456log91609995000011, accountId=10089, gameId=BrickDiamond, status=11, type=1, userType=0, operateId=20180420164445ROOM74009994000021, createTime=null, updateTime=null)。\n2018-04-20 16:44:56.923 logback [clientInboundChannel-490] INFO  c.k.p.service.AbstractWSGameService:262 - @钻石模式--调用RPC接口，确认减少金币。\n2018-04-20 16:44:56.946 logback [clientInboundChannel-490] INFO  c.k.p.service.AbstractWSGameService:219 - @钻石模式--调用RPC接口，赢家处理，调用RPC接口，增加钻石。\n2018-04-20 16:44:56.959 logback [clientInboundChannel-490] INFO  c.k.p.service.AbstractWSGameService:239 - 用户：10089，钻石模式房间：20180420164445ROOM74009994000021-正确增加钻石。\n2018-04-20 16:44:56.960 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==>  Preparing: update tb_match_log SET log_id = ?, account_id = ?, game_id = ?, status = ?, operate_id = ? where log_id = ? \n2018-04-20 16:44:56.960 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - ==> Parameters: 20180420164456log91609995000011(String), 10089(String), BrickDiamond(String), 12(Integer), 20180420164445ROOM74009994000021(String), 20180420164456log91609995000011(String)\n2018-04-20 16:44:57.069 logback [clientInboundChannel-499] INFO  c.k.p.b.w.c.MessageController:32 - handleMsg start. msg: Message(code=1400, content={uid=10089, add=0, level=5, count=10, progress=0.44336336336335713}), roomId:20180420164445ROOM74009994000021\n2018-04-20 16:44:57.138 logback [clientInboundChannel-490] DEBUG c.k.p.d.d.c.M.updateByLogId:145 - <==    Updates: 1\n2018-04-20 16:44:57.139 logback [clientInboundChannel-490] INFO  c.k.p.service.AbstractWSGameService:170 - processGameEnd end. resultMsg:Message(code=1500, content={uid=10089, cost=00:07:248, leave=true, record=7})\n2018-04-20 16:44:59.837 logback [http-nio-7009-exec-1] INFO  c.k.p.g.c.w.listener.WebSocketEvent:93 - sessionDisconnect event start, uid:10089, roomId:20180420164445ROOM74009994000021, gameId:BrickDiamond\n2018-04-20 16:44:59.838 logback [http-nio-7009-exec-1] INFO  c.k.p.g.c.w.listener.WebSocketEvent:131 - renew game_playing_couple caused by websocket disconnect! gameId - BrickDiamond, sessionId - fyoru0ci\n2018-04-20 16:44:59.838 logback [http-nio-7009-exec-1] INFO  c.k.p.g.c.w.listener.WebSocketEvent:134 - sessionDisconnect event end, uid:10089, roomId:20180420164445ROOM74009994000021, gameId:BrickDiamond, room:null\n\n\n\n一致性非锁定读:\n\t是指innodb引擎通过多版本控制的方式来读取当前执行时间数据库中行的数据.如果读取的行正在执行delete,update操作,这时候读取操作不会因此而会等待行上锁的释放,相反,inndodb存储引擎回去读取行的一个快照数据.",
+			"settings":
+			{
+				"buffer_size": 32369,
+				"line_ending": "Windows",
+				"name": "2018-04-20 16:44:49.096 logback [http-nio-7009-exe"
+			}
+		},
+		{
+			"contents": "2018-04-27 16:38:31.303 logback [clientInboundChannel-76] INFO  c.k.p.b.s.checker.ProgressChecker:111 - brick ProgressChecker, cheater has been detacted due to check more than 3times!!room:Room(roomId=20180427163746ROOM80909994000141, gameId=Brick, pass=null, totalNumber=2, nowNumber=2, robotUid=700000023, matchType=0, createTime=1524818266809, endTime=null, userMap={10089=UserContext(accountId=10089, gameStatus=2, readyTime=1524818271963), 700000023=UserContext(accountId=700000023, gameStatus=2, readyTime=1524818271963)}), msg:Message(code=1400, content={uid=10089, add=0, level=4, count=92, bricks=[], index=92, progress=0.3056818440061683}), indexAccum:4 \n",
+			"settings":
+			{
+				"buffer_size": 665,
+				"line_ending": "Windows",
+				"name": "2018-04-27 16:38:31.303 logback [clientInboundChan"
+			}
+		},
+		{
+			"contents": "1. 只下落,bricks=[]  hasbricks = null\n2. 有消除行为,但是消除的是玩家的,bricks=[] hasbricks = false\n3. 有消除行为,但是消除的是地图的,bricks=[1,2,3] hashbricks = true\n4. 有消除行为,但是有高级砖块碎裂,bricks=\n\n\n\nmsg:Message(code=1400, content={uid=10089, add=0, level=6, count=21, bricks=[], index=21, progress=0.42448064280496917, havebrick=false}",
+			"settings":
+			{
+				"buffer_size": 300,
+				"line_ending": "Windows",
+				"name": "1. 只下落,bricks=[]  hasbricks = null"
+			}
+		},
+		{
+			"file": "/F/google/个人信息/各种密码.txt",
+			"settings":
+			{
+				"buffer_size": 399,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/F/google/Java底层原理图/多线程/ShardUnShard.java",
+			"settings":
+			{
+				"buffer_size": 2832,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "protected int tryAcquireShared(int acquires) {"
+			}
+		},
+		{
+			"contents": "nonce=%s&timestamp=%s&room_id=%s&data=%s&secret=%s\n\n\n\n\n{\"winner\": \"63848111360281\",\n\t\"gameId\": \"mario\",\n\t\"roomId\": \"38921j3jio21jo321\",\n\t\"loser\": \"638dsadsads0281\",\n\t\"playType\": 1,\n\t\"record\": \"jidsjoajisjioadjiosajiojidosjaiodjsjiadsa\",\n\t\"winReason\": 1}",
+			"settings":
+			{
+				"buffer_size": 253,
+				"line_ending": "Windows",
+				"name": "nonce=%s&timestamp=%s&room_id=%s&data=%s&secret=%s"
+			}
+		},
+		{
+			"contents": "¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ\n¨ˆ                                                        ¨ˆ\n¨ˆ               http://www.pc0359.cn                     ¨ˆ\n¨ˆ                                                        ¨ˆ\n¨ˆ             ºÓ¶«ÂÌÉ«Èí¼þÕ¾¡¢ÂÌÉ«°²È«                   ¨ˆ\n¨ˆ                                                        ¨ˆ\n¨ˆ                 ÎÒÃÇÖ»·ÖÏí¾«Æ·Èí¼þ                     ¨ˆ\n¨ˆ                                                        ¨ˆ\n¨ˆ      ©³©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©µ©°©¤©¤©¤©¤©¶    ¨ˆ\n¨ˆ      ©§ºÓ¶«ÏÂÔØÕ¾                    ©¦©¦°Ù¶ÈÒ»ÏÂ©§    ¨ˆ\n¨ˆ      ©º©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¼©¹©¥©¥©¥©¥©¿    ¨ˆ\n¨ˆ                                                        ¨ˆ\n¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ¨ˆ\n©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥\n------------------------------------------------------------\n------------------------------------------------------------\n©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥©¥©©©¥©©©¥©©©¥©©©¥©©©¥©©©¥\n\n\n\n¡¾Èí¼þÊ¹ÓÃ·½·¨¡¿£º\n\n1.ÂÌÉ«°æÈí¼þ£¬²»ÐèÒª°²×°£»Ñ¹Ëõ°üÀïÈç¹ûÓÐ¡¾@ÂÌ»¯¹¤¾ß.exe¡¢!)ÂÌ»¯.bat ¡¢ !)ÂÌ»¯.reg ¡¢ !)ÂÌ»¯.cmd ¡¢@Install_ÂÌ»¯.exe¡¢ !)Ë«»÷µ¼Èë.reg ¡¢ !)×¢²áµ¼Èë.reg¡¿µÈÀàËÆÎÄ¼þ¡£\n ÇëÏÈÒªÔËÐÐ¸ÃÀàÎÄ¼þ£¬ÕâÑù²ÅÄÜÈÃ³ÌÐòÕý³£ÔËÐÐ¡£\n\n2.°²×°ºÃÈí¼þºó£¬½«×¢²á»ú·ÅÔÚ°²×°Ä¿Â¼µÄÎÄ¼þ¼ÐÄÚ\n\n3.Ë«»÷×¢²á»ú£¬Èí¼þÔËÐÐ£¬¿´µ½ÓÐ×¢²á°´Å¥ºó£¬µã×¢²á£¬ÔÚ×¢²áÐÅÏ¢ÀïÌîÐ´ÓÃ»§ÃûµÈ£¬×¢²áÂëËæ±ãÌîÐ´\n\n4.µã»÷È·¶¨°´Å¥£¬×¢²á»ú½«³öÏÖÕýÈ·µÄ×¢²áÂë£¬½«¸Õ²ÅµÄ×¢²áÃûºÍÕýÈ·×¢²áÂëÌîÈëÈí¼þ¼´¿É×¢²á¡£\n\nÆÆ½â²¹¶¡Ê¹ÓÃ·½·¨£º\n1.°²×°ºÃÈí¼þºó£¬½«²¹¶¡·ÅÔÚ°²×°Ä¿Â¼ÎÄ¼þ¼ÐÄÚ\n2.ÔËÐÐ²¹¶¡,ºó¼´¿ÉÊ¹ÓÃÈí¼þ¡£¼´Ê¹Èí¼þÏÔÊ¾Î´×¢²á£¬µ«ËùÓÐ¹¦ÄÜºÍÊ±¼äÏÞÖÆ¶¼ÒÑ¾­ÆÆ³ý\n=====================================================================================\n\nÌØ±ð×¢Òâ£ºÓÉÓÚ²¿·ÖÉ±¶¾Èí¼þ°Ñ×¢²á»ú£¬²¹¶¡µÈ×öÎª²¡¶¾²éÉ±£¬Çë´ó¼ÒÓÃ²¹¶¡»ò×¢²á»úÊ±¹Ø±ÕÉ±¶¾Èí¼þÈç²»·ÅÐÄ¿ÉÒÔÔÚ×¢²áÍê³Éºó£¬ÓÃÉ±¶¾Èí¼þ½øÐÐÉ¨Ãè²éÉ±²¡¶¾¡£\n\n=====================================================================================\n",
+			"file": "/C/Users/kevin/Desktop/keyremapper-carck/使用说明.txt",
+			"file_size": 1998,
+			"file_write_time": 130440262803697923,
+			"settings":
+			{
+				"buffer_size": 1959,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "https://api.hiwan360.com/exchangeLoginCookie.html?data=rDgsGlcOZXyxR%2BvSpdRel0a3ogL3f5CY3reoljiiuCd8XpwpSNE4TANN1Hp%2BqnJXTv%2Bm%2F7%2FS%0D%0AC88uwkdLjJ91fAfYPYyIjm1RPLYvpLMMVN7DyaUCCgzY0lLS%2BNn39ssFUWAj3S4wjpTnS6Mp%0D%0AHF7pvyLLYGN9NThmHGO5V1vtoK0XhEO1sE8X0fH4xdwcqd9s5Rx2XAo%2FQN2sdUg3vaZtsdsX%0D%0ApsMCErZcCoHJlIUpbC3h%2FqXXIOqbOPlWhc92Z17dRbnO45r29AJju3MmqrxUDV6aQSb6qn%2BS%0D%0AE1LLvREoQSekQ4v4dL39%2FwvrQlKLK3aKywhu0aShK5mhLtKeFLtWqMGsND9oPaEp0RWkmDuJ%0D%0ABC1jNqUDZriTu%2F0ClgkkWba6j75OkP%2Fdj6ZKg7geCtpLkPjkGnWHCjbhPlP8WcfymD12%2BhJH%0D%0Awb3gqg%3D%3D&stamp=89455081859814684\n\n\n\n\n\n\nGET /exchangeLoginCookie.html?data=rDgsGlcOZXyxR%2BvSpdRel0a3ogL3f5CY3reoljiiuCd8XpwpSNE4TANN1Hp%2BqnJXTv%2Bm%2F7%2FS%0D%0AC88uwkdLjJ91fAfYPYyIjm1RPLYvpLMMVN7DyaUCCgzY0lLS%2BNn39ssFUWAj3S4wjpTnS6Mp%0D%0AHF7pvyLLYGN9NThmHGO5V1vtoK0XhEO1sE8X0fH4xdwcqd9s5Rx2XAo%2FQN2sdUg3vaZtsdsX%0D%0ApsMCErZcCoHJlIUpbC3h%2FqXXIOqbOPlWhc92Z17dRbnO45r29AJju3MmqrxUDV6aQSb6qn%2BS%0D%0AE1LLvREoQSekQ4v4dL39%2FwvrQlKLK3aKywhu0aShK5mhLtKeFLtWqMGsND9oPaEp0RWkmDuJ%0D%0ABC1jNqUDZriTu%2F0ClgkkWba6j75OkP%2Fdj6ZKg7geCtpLkPjkGnWHCjbhPlP8WcfymD12%2BhJH%0D%0Awb3gqg%3D%3D&stamp=89455081859814684 HTTP/1.1\n\n\n\n\n\nhttps://api.hiwan360.com/exchangeLoginCookie.html?data=rDgsGlcOZXyxR%2BvSpdRel0a3ogL3f5CY3reoljiiuCd8XpwpSNE4TANN1Hp%2BqnJXTv%2Bm%2F7%2FS%0D%0AC88uwkdLjJ91fAfYPYyIjm1RPLYvpLMMVN7DyaUCCgzY0lLS%2BNn39ssFUWAj3S4wjpTnS6Mp%0D%0AHF7pvyLLYGN9NThmHGO5V1vtoK0XhEO1sE8X0fH4xdwcqd9s5Rx2XAo%2FQN2sdUg3vaZtsdsX%0D%0ApsMCErZcCoHJlIUpbC3h%2FqXXIOqbOPlWhc92Z17dRbnO45r29AJju3MmqrxUDV6aQSb6qn%2BS%0D%0AE1LLvREoQSekQ4v4dL39%2FwvrQlKLK3aKywhu0aShK5mhLtKeFLtWqMGsND9oPaEp0RWkmDuJ%0D%0ABC1jNqUDZriTu%2F0ClgkkWba6j75OkP%2Fdj6ZKg7geCtpLkPjkGnWHCjbhPlP8WcfymD12%2BhJH%0D%0Awb3gqg%3D%3D&stamp=89455081859814684\n\n\n\n\n\nGET /exchangeLoginCookie.html?data=rDgsGlcOZXyxR%2BvSpdRel0a3ogL3f5CY3reoljiiuCd8XpwpSNE4TANN1Hp%2BqnJXTv%2Bm%2F7%2FS%0D%0AC88uwkdLjJ91fAfYPYyIjm1RPLYvpLMMVN7DyaUCCgzY0lLS%2BNn39ssFUWAj3S4wjpTnS6Mp%0D%0AHF7pvyLLYGN9NThmHGO5V1vtoK0XhEO1sE8X0fH4xdwcqd9s5Rx2XAo%2FQN2sdUg3vaZtsdsX%0D%0ApsMCErZcCoHJlIUpbC3h%2FqXXIOqbOPlWhc92Z17dRbnO45r29AJju3MmqrxUDV6aQSb6qn%2BS%0D%0AE1LLvREoQSekQ4v4dL39%2FwvrQlKLK3aKywhu0aShK5mhLtKeFLtWqMGsND9oPaEp0RWkmDuJ%0D%0ABC1jNqUDZriTu%2F0ClgkkWba6j75OkP%2Fdj6ZKg7geCtpLkPjkGnWHCjbhPlP8WcfymD12%2BhJH%0D%0Awb3gqg%3D%3D&stamp=89455081859814684 HTTP/1.1\n\n\n\n\n\n\n",
+			"settings":
+			{
+				"buffer_size": 2344,
+				"line_ending": "Windows",
+				"name": "https://api.hiwan360.com/exchangeLoginCookie.html?"
+			}
+		},
+		{
+			"contents": "GET /exchangeLoginCookie.html?stamp=700378909979105712&data=YvnF9bPbKzgdFh0lBAqgOnwuar4OFq5Cl9AI%2BPvdmho%2FS4AiTQjId4qQKrVpEsGBoeElBcDyYYly%0A6EfDUWycHwNwngjSeR0zL13ZEG0BRdcpV533pr4lTvgnwdZcOcV4t8FNuCKxskLmhID9jaZyjDWK%0Akb6C92ik5TB5q8Gg5eZbTW%2BirFJM1bM845u59NIU43Xrn0TIqFJKqCC%2F9jAUES834pSekNqzyo4J%0AGkCkW0QKT8FizdUPg23G29BwvN4kmY4vkCdov%2F7uo14sSotbPeyZEQaY4%2FMWilPBeEQjbmc2vdX8%0AoJUnX80OKZ4JvtJNRnUIMvrOunbTNOEDm1kFZbMR%2FhobtNFrExKwWLrXMlL%2FdMJ6KsXucQ8zLPp5%0Anx0xeSsIBw8xD0bhRyE%2Fcwz%2FKAhf6HAZO0IzhBvzphQvkMmb9QwMId12TgpgjtQK9c1Zb2euRiPe%0A43QzqAgEFu%2FnkA%3D%3D%0A HTTP/1.1\n\n\n\nhttps://game.hiwan360.com/social/mario/index.html?nonce=jccbhypc&timestamp=1525852029502&roomId=20180509153923ROOM62109994000185&data={\"accountId\":\"711891642\",\"nickName\":\"卡卡咔咔咔啦啦\",\"sex\":2,\"avatar\":\"https://img.hiwan360.cn/hiwan360/product/images/user_head/711891642_1516937754120_4998.jpg\",\"oppAccountId\":\"700000007\",\"oppNickName\":\"7robot\",\"oppSex\":1,\"oppAvatar\":\"https://img.hiwan360.cn/hiwan360/product/images/user_head/robotHead.jpg\",\"gameId\":\"Mario\",\"roomId\":\"20180509153923ROOM62109994000185\",\"isAddScore\":1}&sign=2742b086c2b40ea3d8b370899de10c93bbd8a3a5",
+			"settings":
+			{
+				"buffer_size": 1151,
+				"line_ending": "Windows",
+				"name": "GET /exchangeLoginCookie.html?stamp=70037890997910"
+			}
+		},
+		{
+			"contents": "{\n    \"name\":         \"John Smith\",\n    \"age\":          42,\n    \"confirmed\":    true,\n    \"join_date\":    \"2014-06-01\",\n    \"home\": {\n        \"lat\":      51.5,\n        \"lon\":      0.1\n    },\n    \"accounts\": [\n        {\n            \"type\": \"facebook\",\n            \"id\":   \"johnsmith\"\n        },\n        {\n            \"type\": \"twitter\",\n            \"id\":   \"johnsmith\"\n        }\n    ]\n}",
+			"settings":
+			{
+				"buffer_size": 384,
+				"line_ending": "Windows",
+				"name": "{"
+			}
+		},
+		{
+			"contents": "PUT /website/blog/123\n{\n  \"title\": \"My first blog entry\",\n  \"text\":  \"Just trying this out...\",\n  \"date\":  \"2014/01/01\"\n}\n\n{\n\t\"_index\": \"website\",\n\t\"_type\": \"blog\",\n\t\"_id\": \"0GEKRWMBIbZjDaLQk9Jy\",\n\t\"_version\": 1,\n\t\"result\": \"created\",\n\t\"_shards\": {\n\t\t\"total\": 2,\n\t\t\"successful\": 1,\n\t\t\"failed\": 0\n\t},\n\t\"_seq_no\": 0,\n\t\"_primary_term\": 1\n}\n\n\n\n\n\nGET /website/blog/0GEKRWMBIbZjDaLQk9Jy/\n\n{\n\t\"_index\": \"website\",\n\t\"_type\": \"blog\",\n\t\"_id\": \"0GEKRWMBIbZjDaLQk9Jy\",\n\t\"_version\": 1,\n\t\"found\": true,\n\t\"_source\": {\n\t\t\"title\": \"My second blog entry\",\n\t\t\"text\": \"Still trying this out...\",\n\t\t\"date\": \"2014/01/01\"\n\t}\n}\n\n\n\n\nPUT /website/blog/0GEKRWMBIbZjDaLQk9Jy/\n\n{\n  \"title\": \"My first blog entry\",\n  \"text\": \"I am starting to get the hang of this...\",\n  \"date\": \"2014/01/02\"\n}\n\n{\n\t\"_index\": \"website\",\n\t\"_type\": \"blog\",\n\t\"_id\": \"0GEKRWMBIbZjDaLQk9Jy\",\n\t\"_version\": 2,\n\t\"result\": \"updated\",\n\t\"_shards\": {\n\t\t\"total\": 2,\n\t\t\"successful\": 1,\n\t\t\"failed\": 0\n\t},\n\t\"_seq_no\": 1,\n\t\"_primary_term\": 1\n}\n\n\n\nDELETE /website/blog/0GEKRWMBIbZjDaLQk9Jy/\n{\n\t\"_index\": \"website\",\n\t\"_type\": \"blog\",\n\t\"_id\": \"0GEKRWMBIbZjDaLQk9Jy\",\n\t\"_version\": 3,\n\t\"result\": \"deleted\",\n\t\"_shards\": {\n\t\t\"total\": 2,\n\t\t\"successful\": 1,\n\t\t\"failed\": 0\n\t},\n\t\"_seq_no\": 2,\n\t\"_primary_term\": 1\n}",
+			"settings":
+			{
+				"buffer_size": 1238,
+				"line_ending": "Windows",
+				"name": "PUT /website/blog/123"
+			}
+		},
+		{
+			"file": "/F/google/美团工作信息/sublime文件保存/11111111111111111111",
+			"settings":
+			{
+				"buffer_size": 32368,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "2018-04-20 18:10:49.461 logback [createRoom-pool-2"
+			}
+		},
+		{
+			"contents": "# ======================== Elasticsearch Configuration =========================\n#\n# NOTE: Elasticsearch comes with reasonable defaults for most settings.\n#       Before you set out to tweak and tune the configuration, make sure you\n#       understand what are you trying to accomplish and the consequences.\n#\n# The primary way of configuring a node is via this file. This template lists\n# the most important settings you may want to configure for a production cluster.\n#\n# Please consult the documentation for further information on configuration options:\n# https://www.elastic.co/guide/en/elasticsearch/reference/index.html\n#\n# ---------------------------------- Cluster -----------------------------------\n#\n# Use a descriptive name for your cluster:\n#\n#cluster.name: my-application\n#\n# ------------------------------------ Node ------------------------------------\n#\n# Use a descriptive name for the node:\n#\n#node.name: node-1\n#\n# Add custom attributes to the node:\n#\n#node.attr.rack: r1\n#\n# ----------------------------------- Paths ------------------------------------\n#\n# Path to directory where to store the data (separate multiple locations by comma):\n#\n#path.data: /path/to/data\n#\n# Path to log files:\n#\n#path.logs: /path/to/logs\n#\n# ----------------------------------- Memory -----------------------------------\n#\n# Lock the memory on startup:\n#\n#bootstrap.memory_lock: true\n#\n# Make sure that the heap size is set to about half the memory available\n# on the system and that the owner of the process is allowed to use this\n# limit.\n#\n# Elasticsearch performs poorly when the system is swapping the memory.\n#\n# ---------------------------------- Network -----------------------------------\n#\n# Set the bind address to a specific IP (IPv4 or IPv6):\n#\nnetwork.host: 0.0.0.0\n#\n# Set a custom port for HTTP:\n#\n#http.port: 9200\n#\n# For more information, consult the network module documentation.\n#\n# --------------------------------- Discovery ----------------------------------\n#\n# Pass an initial list of hosts to perform discovery when new node is started:\n# The default list of hosts is [\"127.0.0.1\", \"[::1]\"]\n#\n#discovery.zen.ping.unicast.hosts: [\"host1\", \"host2\"]\n#\n# Prevent the \"split brain\" by configuring the majority of nodes (total number of master-eligible nodes / 2 + 1):\n#\n#discovery.zen.minimum_master_nodes: \n#\n# For more information, consult the zen discovery module documentation.\n#\n# ---------------------------------- Gateway -----------------------------------\n#\n# Block initial recovery after a full cluster restart until N nodes are started:\n#\n#gateway.recover_after_nodes: 3\n#\n# For more information, consult the gateway module documentation.\n#\n# ---------------------------------- Various -----------------------------------\n#\n# Require explicit names when deleting indices:\n#\n#action.destructive_requires_name: true\n",
+			"file": "/C/Users/kevin/Documents/NetSarang/Xftp/Temporary/elasticsearch.yml",
+			"file_size": 2848,
+			"file_write_time": 131706218803328233,
+			"settings":
+			{
+				"buffer_size": 2848,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/config.JSON",
+			"settings":
+			{
+				"buffer_size": 94,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/license/createlicense.template.html",
+			"settings":
+			{
+				"buffer_size": 3260,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "GameVo   private Integer gameChannel;\n\n\n\nnonce=user123&timestamp=1526031082344&roomId=6d516be166&data={\"winer\":\"user123\",\"gameId\":\"gobang\",\"roomId\":\"6d516be166\",\"loser\":\"user456\",\"playType\":0,\"record\":\"10\",\"winReason\":1}&secret=Wfo3DnWg8m4a3DEG\n\n\n\n2d3c160658f14fea71c0027d08bcb85ef0557ba1",
+			"settings":
+			{
+				"buffer_size": 288,
+				"line_ending": "Windows",
+				"name": "GameVo   private Integer gameChannel;"
+			}
+		},
+		{
+			"contents": "2018-04-20 18:10:49.461 logback [createRoom-pool-2] INFO  c.k.p.b.r.impl.BrickRobotServiceImpl:96 - @BrickRobot onRoomCreated. roomId - 20180420181049ROOM45009994000021, uid - 10089, robotUid - 700000006, speed - 100, brickRoomContext - BrickRoomContext(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1137, roomId=20180420181049ROOM45009994000021, uid=10089, robotUid=700000006, startTime=1524219049461, initialSpeed=100, prevExecTime=0, nextExecTime=0, percent=0, iAmReady=false, iShouldWin=true), eraseSuccessSequence=null, gameMap=null, level=2, index=0, indexModMax=0, eraseCount=0, loseTime=71324, progress=0.0, failed=false, speed=100, iniConfig=BrickRobotConfig(super=RobotConfig(winRate=100)))\n",
+			"settings":
+			{
+				"buffer_size": 718,
+				"line_ending": "Windows",
+				"name": "2018-04-20 18:10:49.461 logback [createRoom-pool-2"
+			}
+		},
+		{
+			"contents": "2018-04-20 18:27:52.613 logback [createRoom-pool-1] INFO  c.k.p.g.c.robot.AbstractRobotService:115 - context list - BrickRoomContext(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1147, roomId=20180420182522ROOM92709994000025, uid=10089, robotUid=700000006, startTime=1524219923049, initialSpeed=100, prevExecTime=1524219931348, nextExecTime=1524219931448, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[1, 0, 3, 0, 0, 7, 2, 2, 3, 0, 2, 3, 1, 3, 2, 3, 0, 3, 7, 0, 1, 3, 3, 3, 6, 1, 1, 3, 3, 2, 2, 3, 5, 2, 1, 3, 7, 0, 0, 0, 2, 3, 1, 3, 1, 2, 3, 1, 3, 0, 3, 2, 1, 1, 3, 1, 3, 3, 4, 2, 5, 3, 0, 3, 0, 3, 2, 2, 1, 1, 0, 3, 2, 0, 1, 2, 4, 0, 0, 3, 3, 2, 0, 1, 3, 1, 1, 3, 3, 1, 6, 3, 3, 1, 2, 7, 2, 0, 1, 0, 2, 7, 3, 2, 7, 1, 3, 2, 1, 2, 2, 2, 0, 1, 2, 7, 1, 1, 1, 2, 1, 0, 0, 2, 0, 2, 5, 1, 0, 0, 0, 1, 0, 3, 0, 1, 1, 1, 2, 5, 1, 1, 3, 1, 4, 1, 3, 0, 5, 0, 0, 1, 0, 2, 3, 3, 1, 2, 1, 2, 3, 1, 5, 3, 3, 0, 0, 1, 3, 2, 1, 1, 0, 2, 0, 0, 3, 3, 1, 5, 2, 0, 3, 3, 1, 3, 0, 3, 0, 1, 0, 2, 0, 1, 3, 1, 1, 1, 5, 3, 0, 6, 0, 0, 1, 2, 2, 2, 1, 1, 7, 0, 2, 3, 0, 6, 1, 0, 6, 2, 3, 0, 3, 2, 2, 3, 3, 3, 7, 0, 1, 1, 3, 3, 4, 2, 1, 4, 3, 2, 1, 3, 2, 3, 3, 1, 3, 2, 2, 7, 3, 3, 1, 0, 2, 1, 1, 1, 2, 1, 4, 0, 0, 1, 0, 2, 3, 1, 0, 3, 0, 0, 0, 0, 0, 1, 3, 1, 2, 2, 3, 2, 3, 5, 2, 2, 3, 3, 3, 1, 3, 2, 1, 3, 1, 0, 1, 3, 3, 0, 3, 2, 3, 3, 3, 0, 2, 5, 3, 4, 3, 1, 0, 1, 3, 1, 1, 0, 0, 2, 0, 2, 3, 1, 2, 5, 1, 3, 3, 2, 0, 0, 2, 1, 1, 3, 1, 3, 2, 1, 0, 3, 3, 3, 3, 3, 5, 2, 2, 1, 3, 0, 0, 3, 0, 4, 1, 0, 1, 2, 1, 0, 3, 1, 2, 3, 3, 3, 1, 3, 3, 4, 1, 3, 0, 0, 0, 6, 1, 3, 2, 3, 3, 0, 7, 3, 1, 7, 2, 2, 2, 1, 3, 2, 6, 0, 2, 0, 1, 3, 2, 0, 2, 2, 2, 3, 2, 2, 4, 1, 3, 2, 0, 3, 4, 3, 3, 1, 0, 2, 3, 1, 1, 1, 2, 3, 3, 7, 3, 1, 3, 3, 3, 2, 2, 2, 3, 0, 2, 2, 0, 3, 2, 2, 0, 0, 1, 2, 0, 2, 3, 3, 2, 1, 2, 1, 2, 0, 3, 2, 1, 1, 0, 0, 4, 3, 1, 0, 2, 5, 0, 4, 1, 1, 6, 2, 1, 1, 0, 5, 3, 0, 2, 0, 0, 6, 1, 3, 0, 2, 0, 2, 0, 0, 2, 4, 0, 1, 0, 0, 1, 1, 2, 3, 0, 1, 0, 1, 0, 3, 0, 3, 0, 0, 1, 0, 0, 0, 1, 3, 3, 1, 6, 0, 2, 0, 3, 2, 0, 0, 1, 1, 7, 0, 3, 2, 0, 0, 1, 2, 6, 1, 3, 1, 0, 1, 3, 0, 3, 1, 5, 3, 4, 0, 0, 2, 0, 0, 4, 1, 3, 0, 1, 0, 1, 1, 3, 1, 2, 3, 4, 3, 1, 2, 2, 1, 6, 2, 2, 2, 3, 3, 2, 1, 0, 4, 3, 0, 0, 3, 5, 1, 2, 2, 0, 2, 2, 3, 3, 2, 1, 1, 1, 1, 3, 1, 1, 3, 1, 3, 5, 1, 2, 1, 2, 0, 5, 1, 2, 2, 2, 1, 3, 2, 0, 7, 0, 1, 3, 3, 3, 6, 0, 0, 2, 6, 1, 3, 0, 0, 0, 1, 1, 3, 1, 1, 1, 3, 2, 7, 3, 3, 1, 1, 1, 2, 3, 3, 2, 0, 0, 0, 1, 0, 2, 0, 0, 3, 3, 0, 3, 6, 1, 0, 3, 0, 3, 2, 0, 2, 4, 0, 2, 2, 6, 2, 3, 1, 2, 5, 1, 2, 2, 1, 0, 0, 2, 3, 0, 0, 3, 0, 0, 2, 1, 2, 5, 2, 0, 4, 0, 0, 0, 1, 0, 2, 2, 1, 2, 1, 3, 0, 3, 3, 1, 0, 2, 5, 2, 3, 1, 3, 5, 1, 2, 4, 2, 1, 6, 3, 2, 3, 1, 1, 1, 1, 0, 3, 2, 2, 3, 3, 1, 4, 2, 1, 3, 2, 1, 2, 0, 0, 3, 0, 3, 1, 3, 0, 2, 3, 1, 3, 3, 0, 0, 7, 0, 0, 2, 3, 3, 0, 1, 0, 1, 1, 3, 2, 0, 1, 3, 7, 3, 5, 0, 2, 3, 1, 3, 2, 2, 2, 3, 1, 3, 1, 3, 1, 3, 7, 0, 3, 3, 2, 0, 2, 2, 0, 3, 1, 1, 1, 2, 0, 7, 3, 1, 1, 1, 3, 0, 6, 1, 3, 2, 6, 3, 1, 3, 4, 2, 1, 1, 1, 3, 2, 1, 1, 0, 0, 1, 1, 0, 2, 2, 2, 2, 3, 6, 1, 0, 4, 2, 0, 3, 2, 0, 1, 3, 0, 3, 1, 2, 3, 3, 3, 2, 2, 6, 0, 1, 5, 0, 1, 2, 0, 2, 3, 2, 1, 2, 2, 3, 4, 0, 0, 2, 2, 0, 0, 0, 3, 3, 0, 3, 3, 5, 0, 3, 7, 3, 6, 2, 5, 3, 3, 3, 0, 0, 0, 4, 0, 0, 2, 1, 0, 3, 2, 0, 3, 1, 1, 2, 1, 3, 0, 3, 1, 2, 1, 0, 0, 0, 0, 1, 2, 0, 1, 1, 0, 3, 2, 3, 0, 5, 1, 1, 2, 0, 3, 2, 3, 2, 2, 5, 3, 0, 3, 0, 5, 2, 0, 0, 7, 3, 2, 0, 0, 3, 7, 2, 1, 3, 1, 2, 1, 3, 2, 0, 1, 3, 1, 1, 0, 1, 3, 0, 0, 2, 2], level=2, index=18, indexModMax=18, eraseCount=1, loseTime=86309, progress=0.0, failed=false, speed=100, iniConfig=BrickRobotConfig(super=RobotConfig(winRate=100)))\n\n\n\n\n\n2018-04-20 18:29:29.498 logback [createRoom-pool-2] INFO  c.k.p.g.c.robot.AbstractRobotService:115 - context list - BrickRoomContext(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1147, roomId=20180420182522ROOM92709994000025, uid=10089, robotUid=700000006, startTime=1524219923049, initialSpeed=100, prevExecTime=1524219931348, nextExecTime=1524219931448, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[1, 0, 3, 0, 0, 7, 2, 2, 3, 0, 2, 3, 1, 3, 2, 3, 0, 3, 7, 0, 1, 3, 3, 3, 6, 1, 1, 3, 3, 2, 2, 3, 5, 2, 1, 3, 7, 0, 0, 0, 2, 3, 1, 3, 1, 2, 3, 1, 3, 0, 3, 2, 1, 1, 3, 1, 3, 3, 4, 2, 5, 3, 0, 3, 0, 3, 2, 2, 1, 1, 0, 3, 2, 0, 1, 2, 4, 0, 0, 3, 3, 2, 0, 1, 3, 1, 1, 3, 3, 1, 6, 3, 3, 1, 2, 7, 2, 0, 1, 0, 2, 7, 3, 2, 7, 1, 3, 2, 1, 2, 2, 2, 0, 1, 2, 7, 1, 1, 1, 2, 1, 0, 0, 2, 0, 2, 5, 1, 0, 0, 0, 1, 0, 3, 0, 1, 1, 1, 2, 5, 1, 1, 3, 1, 4, 1, 3, 0, 5, 0, 0, 1, 0, 2, 3, 3, 1, 2, 1, 2, 3, 1, 5, 3, 3, 0, 0, 1, 3, 2, 1, 1, 0, 2, 0, 0, 3, 3, 1, 5, 2, 0, 3, 3, 1, 3, 0, 3, 0, 1, 0, 2, 0, 1, 3, 1, 1, 1, 5, 3, 0, 6, 0, 0, 1, 2, 2, 2, 1, 1, 7, 0, 2, 3, 0, 6, 1, 0, 6, 2, 3, 0, 3, 2, 2, 3, 3, 3, 7, 0, 1, 1, 3, 3, 4, 2, 1, 4, 3, 2, 1, 3, 2, 3, 3, 1, 3, 2, 2, 7, 3, 3, 1, 0, 2, 1, 1, 1, 2, 1, 4, 0, 0, 1, 0, 2, 3, 1, 0, 3, 0, 0, 0, 0, 0, 1, 3, 1, 2, 2, 3, 2, 3, 5, 2, 2, 3, 3, 3, 1, 3, 2, 1, 3, 1, 0, 1, 3, 3, 0, 3, 2, 3, 3, 3, 0, 2, 5, 3, 4, 3, 1, 0, 1, 3, 1, 1, 0, 0, 2, 0, 2, 3, 1, 2, 5, 1, 3, 3, 2, 0, 0, 2, 1, 1, 3, 1, 3, 2, 1, 0, 3, 3, 3, 3, 3, 5, 2, 2, 1, 3, 0, 0, 3, 0, 4, 1, 0, 1, 2, 1, 0, 3, 1, 2, 3, 3, 3, 1, 3, 3, 4, 1, 3, 0, 0, 0, 6, 1, 3, 2, 3, 3, 0, 7, 3, 1, 7, 2, 2, 2, 1, 3, 2, 6, 0, 2, 0, 1, 3, 2, 0, 2, 2, 2, 3, 2, 2, 4, 1, 3, 2, 0, 3, 4, 3, 3, 1, 0, 2, 3, 1, 1, 1, 2, 3, 3, 7, 3, 1, 3, 3, 3, 2, 2, 2, 3, 0, 2, 2, 0, 3, 2, 2, 0, 0, 1, 2, 0, 2, 3, 3, 2, 1, 2, 1, 2, 0, 3, 2, 1, 1, 0, 0, 4, 3, 1, 0, 2, 5, 0, 4, 1, 1, 6, 2, 1, 1, 0, 5, 3, 0, 2, 0, 0, 6, 1, 3, 0, 2, 0, 2, 0, 0, 2, 4, 0, 1, 0, 0, 1, 1, 2, 3, 0, 1, 0, 1, 0, 3, 0, 3, 0, 0, 1, 0, 0, 0, 1, 3, 3, 1, 6, 0, 2, 0, 3, 2, 0, 0, 1, 1, 7, 0, 3, 2, 0, 0, 1, 2, 6, 1, 3, 1, 0, 1, 3, 0, 3, 1, 5, 3, 4, 0, 0, 2, 0, 0, 4, 1, 3, 0, 1, 0, 1, 1, 3, 1, 2, 3, 4, 3, 1, 2, 2, 1, 6, 2, 2, 2, 3, 3, 2, 1, 0, 4, 3, 0, 0, 3, 5, 1, 2, 2, 0, 2, 2, 3, 3, 2, 1, 1, 1, 1, 3, 1, 1, 3, 1, 3, 5, 1, 2, 1, 2, 0, 5, 1, 2, 2, 2, 1, 3, 2, 0, 7, 0, 1, 3, 3, 3, 6, 0, 0, 2, 6, 1, 3, 0, 0, 0, 1, 1, 3, 1, 1, 1, 3, 2, 7, 3, 3, 1, 1, 1, 2, 3, 3, 2, 0, 0, 0, 1, 0, 2, 0, 0, 3, 3, 0, 3, 6, 1, 0, 3, 0, 3, 2, 0, 2, 4, 0, 2, 2, 6, 2, 3, 1, 2, 5, 1, 2, 2, 1, 0, 0, 2, 3, 0, 0, 3, 0, 0, 2, 1, 2, 5, 2, 0, 4, 0, 0, 0, 1, 0, 2, 2, 1, 2, 1, 3, 0, 3, 3, 1, 0, 2, 5, 2, 3, 1, 3, 5, 1, 2, 4, 2, 1, 6, 3, 2, 3, 1, 1, 1, 1, 0, 3, 2, 2, 3, 3, 1, 4, 2, 1, 3, 2, 1, 2, 0, 0, 3, 0, 3, 1, 3, 0, 2, 3, 1, 3, 3, 0, 0, 7, 0, 0, 2, 3, 3, 0, 1, 0, 1, 1, 3, 2, 0, 1, 3, 7, 3, 5, 0, 2, 3, 1, 3, 2, 2, 2, 3, 1, 3, 1, 3, 1, 3, 7, 0, 3, 3, 2, 0, 2, 2, 0, 3, 1, 1, 1, 2, 0, 7, 3, 1, 1, 1, 3, 0, 6, 1, 3, 2, 6, 3, 1, 3, 4, 2, 1, 1, 1, 3, 2, 1, 1, 0, 0, 1, 1, 0, 2, 2, 2, 2, 3, 6, 1, 0, 4, 2, 0, 3, 2, 0, 1, 3, 0, 3, 1, 2, 3, 3, 3, 2, 2, 6, 0, 1, 5, 0, 1, 2, 0, 2, 3, 2, 1, 2, 2, 3, 4, 0, 0, 2, 2, 0, 0, 0, 3, 3, 0, 3, 3, 5, 0, 3, 7, 3, 6, 2, 5, 3, 3, 3, 0, 0, 0, 4, 0, 0, 2, 1, 0, 3, 2, 0, 3, 1, 1, 2, 1, 3, 0, 3, 1, 2, 1, 0, 0, 0, 0, 1, 2, 0, 1, 1, 0, 3, 2, 3, 0, 5, 1, 1, 2, 0, 3, 2, 3, 2, 2, 5, 3, 0, 3, 0, 5, 2, 0, 0, 7, 3, 2, 0, 0, 3, 7, 2, 1, 3, 1, 2, 1, 3, 2, 0, 1, 3, 1, 1, 0, 1, 3, 0, 0, 2, 2], level=2, index=18, indexModMax=18, eraseCount=1, loseTime=86309, progress=0.0, failed=false, speed=100, iniConfig=BrickRobotConfig(super=RobotConfig(winRate=100)))\n",
+			"settings":
+			{
+				"buffer_size": 7245,
+				"line_ending": "Windows",
+				"name": "2018-04-20 18:27:52.613 logback [createRoom-pool-1"
+			}
+		},
+		{
+			"contents": "super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1149, roomId=20180420185720ROOM64909994000039, uid=10089, robotUid=700000003, startTime=1524221840774, initialSpeed=1000, prevExecTime=1524221847737, nextExecTime=1524221848737, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null,\n\n\n\n\n------------xin\n(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1142, roomId=20180420191522ROOM87409994000055, uid=10089, robotUid=700000012, startTime=1524222923002, initialSpeed=1000, prevExecTime=1524222930652, nextExecTime=1524222931652, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=\n\n\n\nsuper=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1142, roomId=20180420191522ROOM87409994000055, uid=10089, robotUid=700000012, startTime=1524222923002, initialSpeed=1000, prevExecTime=1524222930652, nextExecTime=1524222931652, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[\n\n\nsuper=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1142, roomId=20180420191522ROOM87409994000055, uid=10089, robotUid=700000012, startTime=1524222923002, initialSpeed=1000, prevExecTime=1524222930652, nextExecTime=1524222931652, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[1\n\n\n\n\n\n\n\n\n\n\n\n\n\nr=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1102, roomId=20180420192812ROOM56409994000065, uid=10089, robotUid=700000015, startTime=1524223692689, initialSpeed=1000, prevExecTime=1524223699864, nextExecTime=1524223700864, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[\n\n\nINFO  c.k.p.g.c.robot.AbstractRobotService:116 - context list - BrickRoomContext(super=RobotRoomContext(gameId=BrickDiamond, gameType=2, points=1102, roomId=20180420192812ROOM56409994000065, uid=10089, robotUid=700000015, startTime=1524223692689, initialSpeed=1000, prevExecTime=1524223699864, nextExecTime=1524223700864, percent=100, iAmReady=true, iShouldWin=true), eraseSuccessSequence=null, gameMap=[",
+			"settings":
+			{
+				"buffer_size": 2051,
+				"line_ending": "Windows",
+				"name": "super=RobotRoomContext(gameId=BrickDiamond, gameTy"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 129.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 239.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/F/gitrepository/angular",
+		"/F/gitrepository/angular/app",
+		"/F/gitrepository/angular/app/license"
+	],
+	"file_history":
+	[
+		"/C/Users/kevin/Desktop/elasticsearch.yml",
+		"/F/gitrepository/smallgame/target/funnygame/META-INF/MANIFEST.MF",
+		"/C/Users/kevin/Desktop/mario_battle.sql",
+		"/F/google/linuxtool/shadow启动脚本.sh",
+		"/C/Users/kevin/Desktop/brick_ladder.sql",
+		"/C/Users/kevin/Desktop/brick_curfew_rank.sql",
+		"/C/Users/kevin/Desktop/brick_elo.sql",
+		"/F/google/美团工作信息/IDEA相关(重要!!!)/容易和IDEA冲突的快捷键.txt",
+		"/F/google/shadowsocks4.0.4/pac.txt",
+		"/C/Users/kevin/Desktop/新建 Microsoft Publisher Document.pub",
+		"/F/BaiduNetdiskDownload/office2016激活/使用说明(2).txt",
+		"/C/Users/kevin/AppData/Local/Temp/baiduyunguanjia/onlinedit/cache/e15352dc0aab22e22ea5aad4e4031959/使用说明.txt",
+		"/F/cloudfiles/游戏5期-消砖块/需求分配及排期.txt",
+		"/C/Users/kevin/Desktop/test1111.xml",
+		"/C/Users/kevin/AppData/Local/Temp/360zip$Temp/360$0/mjrty.ps",
+		"/C/Users/kevin/Downloads/db.sqlite3"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"    \n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 21,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 495,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								495,
+								495
+							]
+						],
+						"settings":
+						{
+							"auto_name": "B+树与二叉查找树，平衡查找树，红黑树的主要区别是，B+树是多叉树，一个父节点下可以拥有很多个子节点",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 18,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								556,
+								556
+							]
+						],
+						"settings":
+						{
+							"auto_name": "package com.kiwi.pandora.brick.service.checker;",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 93.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 17,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 503,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								503,
+								503
+							]
+						],
+						"settings":
+						{
+							"auto_name": "msg:Message(code=1400, content={uid=311824933, add",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/F/BaiduNetdiskDownload/office2016激活/使用说明.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1379,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 19,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								150,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "客户端给node1发送更新请求 -> es转发请求道主分片所在节点node3 -> node3从主分",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 25,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/F/google/原理图(重要资源!)/多线程/aqs源码",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1089,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								187,
+								187
+							]
+						],
+						"settings":
+						{
+							"auto_name": "class AbstractQueuedSynchronizer{",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 24,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 30016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2955,
+								2955
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 20,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 32369,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6344,
+								6344
+							]
+						],
+						"settings":
+						{
+							"auto_name": "2018-04-20 16:44:49.096 logback [http-nio-7009-exe",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 2356.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 15,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 665,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								665,
+								665
+							]
+						],
+						"settings":
+						{
+							"auto_name": "2018-04-27 16:38:31.303 logback [clientInboundChan",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 300,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								300,
+								300
+							]
+						],
+						"settings":
+						{
+							"auto_name": "1. 只下落,bricks=[]  hasbricks = null",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/F/google/个人信息/各种密码.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 399,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								74,
+								74
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "/F/google/Java底层原理图/多线程/ShardUnShard.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								306,
+								306
+							]
+						],
+						"settings":
+						{
+							"auto_name": "protected int tryAcquireShared(int acquires) {",
+							"syntax": "Packages/Java/Java.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								135,
+								135
+							]
+						],
+						"settings":
+						{
+							"auto_name": "nonce=%s&timestamp=%s&room_id=%s&data=%s&secret=%s",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/C/Users/kevin/Desktop/keyremapper-carck/使用说明.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1959,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1454,
+								1454
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 527.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2344,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2343,
+								2343
+							]
+						],
+						"settings":
+						{
+							"auto_name": "https://api.hiwan360.com/exchangeLoginCookie.html?",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1209.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1151,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1151,
+								1151
+							]
+						],
+						"settings":
+						{
+							"auto_name": "GET /exchangeLoginCookie.html?stamp=70037890997910",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 384,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								384,
+								384
+							]
+						],
+						"settings":
+						{
+							"auto_name": "{",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								95,
+								95
+							]
+						],
+						"settings":
+						{
+							"auto_name": "PUT /website/blog/123",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "/F/google/美团工作信息/sublime文件保存/11111111111111111111",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 32368,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20432,
+								20432
+							]
+						],
+						"settings":
+						{
+							"auto_name": "2018-04-20 18:10:49.461 logback [createRoom-pool-2",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 8556.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "/C/Users/kevin/Documents/NetSarang/Xftp/Temporary/elasticsearch.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2848,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1757,
+								1757
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/YAML/YAML.sublime-syntax"
+						},
+						"translation.x": -0.0,
+						"translation.y": 1302.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "app/config.JSON",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 94,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								94
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": 48,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"file": "app/license/createlicense.template.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 3260,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": 49,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3255,
+										3258
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/tag.png",
+										"region.orangish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1,
+										4
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 93.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 22,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 288,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								245,
+								245
+							]
+						],
+						"settings":
+						{
+							"auto_name": "GameVo   private Integer gameChannel;",
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 23,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								718,
+								718
+							]
+						],
+						"settings":
+						{
+							"auto_name": "2018-04-20 18:10:49.461 logback [createRoom-pool-2",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 21,
+					"type": "text"
+				},
+				{
+					"buffer": 24,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7245,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6989,
+								6989
+							]
+						],
+						"settings":
+						{
+							"auto_name": "2018-04-20 18:27:52.613 logback [createRoom-pool-1",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 22,
+					"type": "text"
+				},
+				{
+					"buffer": 25,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2051,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2051,
+								2051
+							]
+						],
+						"settings":
+						{
+							"auto_name": "super=RobotRoomContext(gameId=BrickDiamond, gameTy",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 23,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 39.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sublime-pro.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 373.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
