@@ -41,7 +41,7 @@ module('license', ['service', 'service.user', 'datatables', 'datatables.bootstra
                 self.dtOptions = DTOptionsBuilder.newOptions()
                     .withOption('ajax', {
                         // url: 'http://172.16.25.17:8080/license/licenseController/showallcodesByPage',
-                        url: urlconfig.getUrl('/licenseController/showallcodesByPage'),
+                        url: urlconfig.getUrl('/license/showallcodesByPage'),
                         type: 'POST',
                         headers: {
                             //"Content-Type": "application/json",       //加了此行会毁掉datatable的请求格式,导致出错
@@ -106,7 +106,7 @@ module('license', ['service', 'service.user', 'datatables', 'datatables.bootstra
                 self.download = function(adata) {
                     console.log(adata);
                     // var url = 'http://172.16.25.17:8080/license/licenseController/uselicense/' + adata;
-                    var url = urlconfig.getUrl('/licenseController/uselicense/') + adata;
+                    var url = urlconfig.getUrl('/license/uselicense/') + adata;
                     $http({
                         url: url,
                         method: 'GET',
