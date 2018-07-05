@@ -5,7 +5,7 @@ module('licenseApp')
     .config(['$locationProvider', '$routeProvider', '$httpProvider',
         function config($locationProvider, $routeProvider, $httpProvider) {
             $locationProvider.hashPrefix('!');
-            $httpProvider.defaults.withCredentials = true; //允许向请求中添加cookie,但是添加后报通配符错误
+            // $httpProvider.defaults.withCredentials = true; //允许向请求中添加cookie,但是添加后报通配符错误
             //$httpProvider.defaults.headers.post['Access-Control-Allow-Origin'] = 'http: //evil.com';
 
             $routeProvider.
