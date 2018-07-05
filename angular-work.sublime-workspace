@@ -1,0 +1,420 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"stop",
+				"STOP_SHADOWSOCKS"
+			],
+			[
+				"start",
+				"START_SHADOWSOCKS"
+			],
+			[
+				"sha",
+				"SHADOWSOCKS_HOME"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/config配置说明",
+			"settings":
+			{
+				"buffer_size": 120,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 129.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 239.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/F/gitrepository/angular",
+		"/F/gitrepository/angular/app"
+	],
+	"file_history":
+	[
+		"/C/Users/kevin/Desktop/数据库脚本/ALTER TABLE `gobang_curfew_rank`",
+		"/F/gitlab/element-fe/manifest.json",
+		"/F/google/网易御银工作信息/重要图形/五子棋请求流程.xml",
+		"/F/gitlab/element-fe/js/promise.min_83a6a5d.js",
+		"/F/gitlab/element-fe/js/md5.min_97e969ef.js",
+		"/C/Users/kevin/Desktop/gobang_battle.sql",
+		"/C/Users/kevin/Desktop/数据库脚本/mario_battle.sql",
+		"/C/Users/kevin/Desktop/数据库脚本/brick_ladder.sql",
+		"/C/Users/kevin/Desktop/数据库脚本/brick_elo.sql",
+		"/C/Users/kevin/Desktop/数据库脚本/brick_curfew_rank.sql",
+		"/F/gitrepository/angular/app/login/login.component.js",
+		"/F/gitrepository/angular/app/service/Auth.service.js",
+		"/F/gitrepository/angular/app/license/license.component.js",
+		"/F/google/网易御银工作信息/sublime文档缓存/{",
+		"/F/sublime缓存/B+树与二叉查找树，平衡查找树，红黑树的主要区别是，B+树是多叉树，一个父节点下可以拥有很多个子节点",
+		"/F/BaiduNetdiskDownload/office2016激活/使用说明.txt",
+		"/F/google/原理图(重要资源!)/多线程/aqs源码",
+		"/F/google/个人信息/各种密码.txt",
+		"/F/google/Java底层原理图/多线程/ShardUnShard.java",
+		"/C/Users/kevin/Desktop/keyremapper-carck/使用说明.txt",
+		"/F/google/美团工作信息/sublime文件保存/11111111111111111111",
+		"/C/Users/kevin/Documents/NetSarang/Xftp/Temporary/elasticsearch.yml",
+		"/F/gitrepository/angular/app/config.JSON",
+		"/C/Users/kevin/Downloads/Atom1261/使用说明 .txt",
+		"/C/Users/kevin/Downloads/jca.repository.xml",
+		"/F/google/网易御银工作信息/sublime文档缓存/大家下午好,我这次分享的主题是elasticsearch的基础入门,主要是一些基础性的东西,",
+		"/F/google/网易御银工作信息/sublime文档缓存/111",
+		"/F/sublime缓存/CREATE TABLE `gobang_battle` (",
+		"/C/Users/kevin/Downloads/jca.properties.xml",
+		"/F/google/shadowsocks4.0.4/pac.txt",
+		"/F/google/网易御银工作信息/外包游戏/funnygame_h5/Gobang/sha1.js",
+		"/F/google/网易御银工作信息/外包游戏/funnygame_h5/Gobang/wingProperties.json",
+		"/C/Users/kevin/Desktop/elasticsearch.yml",
+		"/F/gitrepository/smallgame/target/funnygame/META-INF/MANIFEST.MF",
+		"/C/Users/kevin/Desktop/mario_battle.sql",
+		"/F/google/linuxtool/shadow启动脚本.sh",
+		"/C/Users/kevin/Desktop/brick_ladder.sql",
+		"/C/Users/kevin/Desktop/brick_curfew_rank.sql",
+		"/C/Users/kevin/Desktop/brick_elo.sql",
+		"/F/google/美团工作信息/IDEA相关(重要!!!)/容易和IDEA冲突的快捷键.txt",
+		"/C/Users/kevin/Desktop/新建 Microsoft Publisher Document.pub",
+		"/F/BaiduNetdiskDownload/office2016激活/使用说明(2).txt",
+		"/C/Users/kevin/AppData/Local/Temp/baiduyunguanjia/onlinedit/cache/e15352dc0aab22e22ea5aad4e4031959/使用说明.txt",
+		"/F/cloudfiles/游戏5期-消砖块/需求分配及排期.txt",
+		"/C/Users/kevin/Desktop/test1111.xml",
+		"/C/Users/kevin/AppData/Local/Temp/360zip$Temp/360$0/mjrty.ps",
+		"/C/Users/kevin/Downloads/db.sqlite3"
+	],
+	"find":
+	{
+		"height": 49.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"    \n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/config配置说明",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								120,
+								120
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 39.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "sublime-pro.sublime-project",
+	"replace":
+	{
+		"height": 74.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 373.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
