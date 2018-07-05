@@ -1,6 +1,6 @@
 {
     "protocal": "http",
-    "host": "118.184.84.117",
+    "host": "localhost",
     "port": "8080",
     "path": ""
 }
